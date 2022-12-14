@@ -1,2 +1,2 @@
 # animal_house
-College project
+Project for web technologies.
