@@ -26,10 +26,8 @@ handleSubmit = async (event) => {
             }
         )
     })
-    //console.log(response.status)
     if (response.status == 200)
-        // Move to http://localhost:3000/bacheca.html after the 200 server's response
-        window.location.replace("http://localhost:3000/bacheca.html")
+        window.location.href = "http://localhost:3000/bacheca.html?id="+ value.email
     else
         alert("Email già esistente. Scegline un'altra.");
 }
