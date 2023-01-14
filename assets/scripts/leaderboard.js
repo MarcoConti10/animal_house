@@ -12,7 +12,7 @@ createLeaderboard = async () => {
         data = await response.json()
         
         // Sort the array of objects based on user_gamescore
-        data.sort((p1, p2) => (p1.user_gamescore > p2.user_gamescore) ? 1 : (p1.user_gamescore < p2.user_gamescore) ? -1 : 0)
+        data.sort((p1, p2) => (p1.user_gamescore < p2.user_gamescore) ? 1 : (p1.user_gamescore > p2.user_gamescore) ? -1 : 0)
 
         for (let index = 0; index < data.length; index++) {
 

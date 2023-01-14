@@ -14,6 +14,14 @@
                 {
                     "content": "My cat is so crazy"
                 }
+            ],
+            "helpRequests": [
+                {
+                    "content": "My dog is not feeling good today. He must have a fever. What should I do?"
+                },
+                {
+                    "content": "My cat seems to have something dark on his hair. What is it?"
+                }
             ]
         },
         {
@@ -23,7 +31,18 @@
             "favoriteAnimal": "cat",
             "gameScore": 12,
             "administrator": false,
-            "anecdotes": []
+            "anecdotes": [],
+            "helpRequests": []
+        },
+        {
+            "name": "test3",
+            "email": "test3@gmail.com",
+            "password": "test3",
+            "favoriteAnimal": "crocodile",
+            "gameScore": 0,
+            "administrator": false,
+            "anecdotes": [],
+            "helpRequests": []
         }
     ]
 }

@@ -51,7 +51,8 @@ app.post('/sign-in', (req, res) => {
             favoriteAnimal: user.favoriteAnimal,
             gameScore: 0,
             administrator: false,
-            anecdotes: []
+            anecdotes: [], 
+            helpRequests: []
         }
         // Push the new user to the database
         db.users.push(newUser)
