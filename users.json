@@ -6,7 +6,15 @@
             "password": "test1",
             "favoriteAnimal": "dog",
             "gameScore": 0,
-            "administrator": false
+            "administrator": false,
+            "anecdotes": [
+                {
+                    "content": "My dog is so funny"
+                },
+                {
+                    "content": "My cat is so crazy"
+                }
+            ]
         },
         {
             "name": "test2",
@@ -14,7 +22,8 @@
             "password": "test2",
             "favoriteAnimal": "cat",
             "gameScore": 0,
-            "administrator": false
+            "administrator": false,
+            "anecdotes": []
         }
     ]
 }

@@ -7,7 +7,6 @@ handleSubmit = async (event) => {
     // FormData API
     const data = new FormData(event.target);
 
-    // Get all the entries from the form 
     // Still a javascript object here
     const value = Object.fromEntries(data.entries());
 
@@ -26,10 +25,11 @@ handleSubmit = async (event) => {
             }
         )
     })
-    //console.log(response.status)
+    // console.log(response.status)
     if (response.status == 200)
-        // move to http://localhost:3000/bacheca.html after the 200 server's response
-        window.location.replace("http://localhost:3000/bacheca.html")
+        // Move to http://localhost:3000/bacheca.html after the 200 server's response
+        // Remember ?id=email for later use
+        window.location.href = "http://localhost:3000/bacheca.html?id=" + value.email
     else
         alert("Email o password sbagliati.");
 }
