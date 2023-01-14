@@ -1,0 +1,11 @@
+
+
+home --> front-office --> log-in/sign-in (pass email in both) --> front-intro: 1) Leaderboard 
+                                                                               2) Anecdotes (onclick - pass email)
+                                                                               3) Aiutatemi (onclick - pass email) 
+
+home --> back-office --> log-in --> back intro:      1) Anagrafica utenti (GET)
+                                                     2) Modify/Delete anecdotes wall
+                                                     3) Modify/Delete help wall    
+
+

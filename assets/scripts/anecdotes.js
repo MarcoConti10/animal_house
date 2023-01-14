@@ -2,10 +2,6 @@
 //        1) Not necessary: each user can delete or modify their own anecdotes.
 //        2) Not necessary: si vede il nome dell'utente che pubblica, il suo animale preferito. 
 
-/* 
-    1) Quando sono su bacheca, onclick sul bottone di Aiutatemi e ridireziono nel js con la mail nella query dell'URLs
-*/ 
-
 getAnecdotes = async () => {
 
     var response = await fetch("/get-anecdotes", {
@@ -40,7 +36,7 @@ getAnecdotes = async () => {
     }
 }
 
-handleSubmit = async (event) => {
+postAnecdote = async (event) => {
 
     event.preventDefault();
 
@@ -81,5 +77,5 @@ handleSubmit = async (event) => {
 }
 
 const form = document.querySelector('form');
-form.addEventListener('submit', handleSubmit);
+form.addEventListener('submit', postAnecdote);
 

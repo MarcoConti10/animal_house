@@ -27,9 +27,9 @@ handleSubmit = async (event) => {
     })
     // console.log(response.status)
     if (response.status == 200)
-        // Move to http://localhost:3000/bacheca.html after the 200 server's response
         // Remember ?id=email for later use
-        window.location.href = "http://localhost:3000/bacheca.html?id=" + value.email
+        //window.location.href = "http://localhost:3000/bacheca.html?id=" + value.email
+        window.location.href = "http://localhost:3000/front-intro.html?id=" + value.email
     else
         alert("Email o password sbagliati.");
 }

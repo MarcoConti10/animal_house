@@ -27,7 +27,7 @@ handleSubmit = async (event) => {
         )
     })
     if (response.status == 200)
-        window.location.href = "http://localhost:3000/bacheca.html?id="+ value.email
+        window.location.href = "http://localhost:3000/front-intro.html?id="+ value.email
     else
         alert("Email già esistente. Scegline un'altra.");
 }

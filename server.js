@@ -16,12 +16,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 // TO-DO: 
-//      0) change to 
-//      1) separating routing from server
-//      2) variables 
-//      3) fix fetch json in login & signin eliminating the parent "user" field
-//      4) language, english/italian coherence
-//      5) folder structure: users.json inside database folder, router.js inside routing folder
+//      1) clean the code
+//      2) separating routing from server
+//      3) language, english/italian coherence
+//      4) folder structure: users.json inside database folder, router.js inside routing folder
+//      5) correct variables 
 
 // Show <index.html> at the beginning
 app.get('/', (req, res) => {
@@ -92,7 +91,6 @@ app.get('/get-anecdotes', (req, res) => {
                 anecdote: user_anecdote.content,
                 email: usr.email
             })
-
         }
     }
 
@@ -117,6 +115,23 @@ app.post('/new-anecdote', (req, res) => {
     }
 })
 
+// Leaderboard
+app.get('/create-leaderboard', (req, res) => {
+    
+    let data = []
+
+    for (usr of db.users) {
+    
+            data.push({
+                user_email: usr.email,
+                user_gamescore: usr.gameScore,
+            })
+        }
+
+    var myJson = JSON.stringify(data)
+    res.send(myJson)
+})
+
 // Vincolato ad amministratori
 app.get('/get-users', (req, res) => {
 
@@ -128,7 +143,17 @@ app.put('/modify-user', (req, res) => {
 })
 
 // Vincolato ad amminstratori
-app.delete('delete-user', (req, res) => {
+app.delete('/delete-user', (req, res) => {
+
+})
+
+// Vincolato ad amministratori
+app.put('/modify-anecdote', (req, res) => {
+
+})
+
+// Vincolato ad amminstratori
+app.delete('/delete-anecdote', (req, res) => {
 
 })
 
