@@ -15,13 +15,6 @@ app.use(express.static(__dirname + '/assets/scripts'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-// TO-DO: 
-//      1) clean the code
-//      2) separating routing from server
-//      3) language, english/italian coherence
-//      4) folder structure: users.json inside database folder, router.js inside routing folder
-//      5) correct variables 
-
 // Show <index.html> at the beginning
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
@@ -107,27 +100,64 @@ app.post('/new-anecdote', (req, res) => {
     
     for (usr of db.users) {
         if (user_email == usr.email) {
-            found = true
             db.users[i].anecdotes.push({content: anecdote_text})
             fs.writeFileSync("users.json", JSON.stringify(db))
-            res.sendStatus(200)
+            break
             }
         i=i+1
     }
+    res.sendStatus(200)
+})
+
+// Get all help requests posted by users
+app.get('/get-help-requests', (req, res) => {
+
+    let data = []
+
+    for (usr of db.users) {
+
+        for (user_help of usr.helpRequests) {
+
+            data.push({
+                email: usr.email,
+                help_request: user_help.content
+            })
+        }
+    }
+
+    var myJson = JSON.stringify(data)
+    res.send(myJson)
+})
+
+// Post a new help request
+app.post('/new-help-request', (req, res) => {
+
+    const {user_email, help_request_text} = req.body
+    let i = 0
+
+    for (usr of db.users) {
+        if (user_email == usr.email) {
+            db.users[i].helpRequests.push({content: help_request_text})
+            fs.writeFileSync("users.json", JSON.stringify(db))
+            break
+        }
+        i = i + 1
+    }
+    res.sendStatus(200)
 })
 
 // Leaderboard
 app.get('/create-leaderboard', (req, res) => {
-    
+
     let data = []
 
     for (usr of db.users) {
-    
-            data.push({
-                user_email: usr.email,
-                user_gamescore: usr.gameScore,
-            })
-        }
+
+        data.push({
+            user_email: usr.email,
+            user_gamescore: usr.gameScore,
+        })
+    }
 
     var myJson = JSON.stringify(data)
     res.send(myJson)
@@ -157,6 +187,18 @@ app.put('/modify-anecdote', (req, res) => {
 app.delete('/delete-anecdote', (req, res) => {
 
 })
+
+// Vincolato ad amministratori
+app.put('/modify-help-req', (req, res) => {
+
+})
+
+// Vincolato ad amminstratori
+app.delete('/delete-help-req', (req, res) => {
+
+})
+
+
 
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000')

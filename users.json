@@ -23,26 +23,6 @@
                     "content": "My cat seems to have something dark on his hair. What is it?"
                 }
             ]
-        },
-        {
-            "name": "test2",
-            "email": "test2@gmail.com",
-            "password": "test2",
-            "favoriteAnimal": "cat",
-            "gameScore": 12,
-            "administrator": false,
-            "anecdotes": [],
-            "helpRequests": []
-        },
-        {
-            "name": "test3",
-            "email": "test3@gmail.com",
-            "password": "test3",
-            "favoriteAnimal": "crocodile",
-            "gameScore": 0,
-            "administrator": false,
-            "anecdotes": [],
-            "helpRequests": []
         }
     ]
 }
