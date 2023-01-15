@@ -1,6 +1,6 @@
-getAnecdotes = async () => {
+getHelpRequests = async () => {
 
-    var response = await fetch("/get-anecdotes", {
+    var response = await fetch("/get-help-requests", {
         method: "GET",
         headers: {
             "Content-type": "application/json"
@@ -12,19 +12,19 @@ getAnecdotes = async () => {
         data = await response.json()
 
         // Clear before showing all anecdotes to avoid showing them twice
-        document.querySelector(".anecdotes-container").innerHTML = ''
+        document.querySelector(".help-requests-container").innerHTML = ''
 
         for (let index = 0; index < data.length; index++) {
 
             email = data[index].email
-            anecdote = data[index].anecdote
+            help_request = data[index].help_request
 
-            document.querySelector(".anecdotes-container").innerHTML +=
+            document.querySelector(".help-requests-container").innerHTML +=
                 `
             <div class="card" style="width: 22rem;">
                     <div class="card-body">
-                        <h5 class="id">Aneddoto di ${email} </h5>
-                        <p class="card-text">${anecdote}</p>
+                        <h5 class="id">Richiesta di aiuto di: ${email} </h5>
+                        <p class="card-text">${help_request}</p>
                     </div>
             </div>
         `
@@ -32,39 +32,38 @@ getAnecdotes = async () => {
     }
 }
 
-postAnecdote = async (event) => {
+postHelpRequest = async (event) => {
 
     event.preventDefault();
 
     const data = new FormData(event.target);
-
     const value = Object.fromEntries(data.entries());
 
     // Get the :id params in the url section
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
 
-    var response = await fetch("/new-anecdote", {
+    var response = await fetch("/new-help-request", {
         method: "POST",
         headers: {
             "Content-type": "application/json"
         },
         body: JSON.stringify(
             {
-            // Pass the :id in the url to the server for simple retrieving of information
-                    anecdote_text: value.text,
-                    user_email: params.id
-                }
+                // Pass the :id in the url to the server for simple retrieving of information
+                user_email: params.id,
+                help_request_text: value.text,
+            }
         )
     })
-    // modify DOM here
+
     if (response.status == 200) {
 
-        document.querySelector(".anecdotes-container").innerHTML += 
-        `
+        document.querySelector(".help-requests-container").innerHTML +=
+            `
             <div class="card" style="width: 22rem;">
                     <div class="card-body">
-                        <h5 class="id">Aneddoto di ${params.id} </h5>
+                        <h5 class="id">Richiesta di aiuto di: ${params.id} </h5>
                         <p class="card-text">${value.text}</p>
                     </div>
             </div>
@@ -73,5 +72,4 @@ postAnecdote = async (event) => {
 }
 
 const form = document.querySelector('form');
-form.addEventListener('submit', postAnecdote);
-
+form.addEventListener('submit', postHelpRequest);
