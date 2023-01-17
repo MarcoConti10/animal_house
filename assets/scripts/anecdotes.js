@@ -9,6 +9,7 @@ getAnecdotes = async () => {
     // modify DOM here
     if (response.status == 200) {
 
+        // try without const too
         data = await response.json()
 
         // Clear before showing all anecdotes to avoid showing them twice

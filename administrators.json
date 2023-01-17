@@ -1,0 +1,10 @@
+{
+    "admins": [
+        {
+            "name": "admin1",
+            "email": "admin1@gmail.com",
+            "password": "admin1",
+            "administrator": true
+        }
+    ]
+}

@@ -7,7 +7,9 @@ TO-DO:
     4) Change email to username (univoco) for leaderboard (not necessary) and aneddoti. Keep the email for the help wall.
     6) Correct variables (underscore, trait or capital letters)
     7) Fix empty requests (help and anecdotes)
-    8) Clean the code
+    8) Create a unique login for front office and back office (separate database for users and administrators)
+    9) Send codes in routing (e.g. 200 and 403)
+    10) Clean the code
 
 NOT NECESSARY: 
 
