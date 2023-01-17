@@ -2,6 +2,7 @@ const express = require('express')
 const fs = require('fs')
 // Database loading
 const db = JSON.parse(fs.readFileSync("./users.json"))
+const administrators_db = JSON.parse(fs.readFileSync("./administrators.json"))
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(express.urlencoded({extended: true}))
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 })
+
+/* FRONT-OFFICE */
 
 // sign-in
 app.post('/sign-in', (req, res) => {
@@ -56,19 +59,20 @@ app.post('/sign-in', (req, res) => {
 })
 
 // log-in
-app.post('/log-in', (req, res) => {
+app.post('/front-log-in', (req, res) => {
 
     const {user} = req.body
     let found = false
-
+   
     for (usr of db.users) {
-        if (user.email == usr.email && user.password == usr.password) 
+        if (user.email == usr.email && user.password == usr.password) {
             found = true
+        }
     }
-
-    if (found) 
+    
+    if (found)
         res.sendStatus(200)
-    else 
+    else   
         res.sendStatus(403)
 })
 
@@ -162,6 +166,27 @@ app.get('/create-leaderboard', (req, res) => {
     var myJson = JSON.stringify(data)
     res.send(myJson)
 })
+
+/* BACK OFFICE */ 
+
+// administrators log-in
+app.post('/back-log-in', (req, res) => {
+
+    const { user } = req.body
+    let found = false
+
+    for (usr of db.users) {
+        if (user.email == usr.email && user.password == usr.password) {
+            found = true
+        }
+    }
+
+    if (found)
+        res.sendStatus(200)
+    else
+        res.sendStatus(403)
+})
+
 
 // Vincolato ad amministratori
 app.get('/get-users', (req, res) => {
