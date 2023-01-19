@@ -1,8 +1,8 @@
-const API_KEY = 'AIzaSyCo-NoyfX2PMR-RM8pQW_7-wO-cRunvqaoY';
+const API_KEY = "AIzaSyCo-NoyfX2PMR-RM8pQW_7-wO-cRunvqaoY";
 const searchTerm = 'funny animals';
 
 // Recupera i video dall'API di YouTube
-fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&key=${AIzaSyCo-NoyfX2PMR-RM8pQW_7-wO-cRunvqao}`)
+fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&key=${API_KEY}`)
   .then(response => response.json())
   .then(data => {
     // Seleziona un video casuale dall'elenco di video restituiti
