@@ -6,7 +6,6 @@
             "password": "test1",
             "favoriteAnimal": "cat",
             "gameScore": "0",
-            "administrator": false,
             "anecdotes": [],
             "helpRequests": []
         },
@@ -16,7 +15,6 @@
             "password": "test2",
             "favoriteAnimal": "cat",
             "gameScore": "0",
-            "administrator": false,
             "anecdotes": [],
             "helpRequests": []
         },
@@ -26,7 +24,6 @@
             "password": "test3",
             "favoriteAnimal": "cat",
             "gameScore": "0",
-            "administrator": false,
             "anecdotes": [],
             "helpRequests": []
         }
