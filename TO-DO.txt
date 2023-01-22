@@ -1,15 +1,18 @@
 TO-DO: 
 
-    0) Separate routing from server
-    1) Language, english/italian coherence
-    2) Folder structure: users.json inside database folder, router.js inside routing folder, others.
-    3) Change username in sign in form instead of name
-    4) Change email to username (univoco) for leaderboard (not necessary) and aneddoti. Keep the email for the help wall.
-    6) Correct variables (underscore, trait or capital letters)
-    7) Fix empty requests (help and anecdotes)
-    8) Create a unique login for front office and back office (separate database for users and administrators)
-    9) Send codes in routing (e.g. 200 and 403)
+    0) Modify p to table and td in users-anagraphic.html and users-anagraphic.js
+    1) Check why it changes every class name in users-anagraphic.js even without code explicitly changes
+    1) Validate Form
+    2) Separate routing from server
+    3) Language, english/italian coherence
+    4) Folder structure: users.json inside database folder, router.js inside routing folder, others.
+    5) Change username in sign in form instead of name
+    6) Change email to username (univoco) for leaderboard (not necessary) and aneddoti. Keep the email for the help wall.
+    7) Correct variables (underscore, trait or capital letters)
+    8) Fix empty requests (help and anecdotes)
+    9) Send codes in routing and exceptions (e.g. 200 and 403)
     10) Clean the code
+    11) Test the final code on other pc
 
 NOT NECESSARY: 
 

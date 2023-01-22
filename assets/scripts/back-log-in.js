@@ -8,7 +8,7 @@ handleSubmit = async (event) => {
     // Still a javascript object here
     const value = Object.fromEntries(data.entries());
 
-    var response = await fetch("/front-log-in", {
+    var response = await fetch("/back-log-in", {
         method: "POST",
         headers: {
             "Content-type": "application/json"
@@ -23,11 +23,11 @@ handleSubmit = async (event) => {
         )
     })
     // console.log(response.status)
-    if (response.status == 200) 
-        window.location.href = "http://localhost:3000/front-intro.html?id=" + value.email
-    else 
-        alert("Email o password sbagliati.") 
+    if (response.status == 200)
+        window.location.href = "http://localhost:3000/back-intro.html"
+    else
+        alert("Errore: Email o password sbagliati.")
 }
 
-const form = document.querySelector('form')
-form.addEventListener('submit', handleSubmit)
+const form = document.querySelector('form');
+form.addEventListener('submit', handleSubmit);
