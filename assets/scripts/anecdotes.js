@@ -37,9 +37,9 @@ postAnecdote = async (event) => {
 
     event.preventDefault();
 
-    const data = new FormData(event.target);
+    const data = new FormData(event.target)
 
-    const value = Object.fromEntries(data.entries());
+    const value = Object.fromEntries(data.entries())
 
     // Get the :id params in the url section
     const urlSearchParams = new URLSearchParams(window.location.search);
