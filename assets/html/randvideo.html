@@ -1,31 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <!-- Responsive viewport settings -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <title>Player</title>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-
-    <link href="/assets/css/style.css" type="text/css" rel="stylesheet">
-
-
-</head>
-
-
-<body>
-    <h1>Video youtube</h1>
+<div id="header"></div>
     
-    <div id="video-container">
-        <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+<h1>Video youtube</h1>
+    
+<div id="video-container">
+    <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
-    <script src="/assets/scripts/randvideo.js"></script>
-</body>
+<script src="/assets/scripts/randvideo.js"></script>
+
+<div id="footer">
+    <script>
+        // Utilizza fetch() per recuperare il contenuto del file header.html
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                // Inserisci il contenuto del file footer.html nel div con id "header"
+                document.getElementById('header').innerHTML = data;
+            })
+            .catch(error => console.log(error));
+
+        // Utilizza fetch() per recuperare il contenuto del file footer.html
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                // Inserisci il contenuto del file footer.html nel div con id "footer"
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.log(error));
+    </script>
+</div>
+
+
+
