@@ -1,24 +1,29 @@
 const express = require('express')
 const fs = require('fs')
-// Database loading
+// database loading
 const db = JSON.parse(fs.readFileSync("./users.json"))
+const admins_db = JSON.parse(fs.readFileSync("./administrators.json"))
 
 const app = express();
 
- // Load my assets
+ // load my assets
 app.use(express.static(__dirname + '/assets/html'))
 app.use(express.static(__dirname + '/assets/css'))
 app.use(express.static(__dirname + '/assets/img'))
 app.use(express.static(__dirname + '/assets/scripts'))
 
-// For parsing requests 
+// for parsing requests 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-// Show <index.html> at the beginning
+// show <index.html> at the beginning
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 })
+
+/****************/
+/* FRONT OFFICE */
+/****************/ 
 
 // sign-in
 app.post('/sign-in', (req, res) => {
@@ -31,12 +36,12 @@ app.post('/sign-in', (req, res) => {
             found = true    
     }
 
-    // If the user already exists, exit with 403 status code
+    // if the user already exists, exit with 403 status code
     if (found)
         res.sendStatus(403)
 
     else {
-        // Create the new user 
+        // create the new user 
         let newUser = {
             name: user.name,
             email: user.email,
@@ -47,32 +52,33 @@ app.post('/sign-in', (req, res) => {
             anecdotes: [], 
             helpRequests: []
         }
-        // Push the new user to the database
+        // push the new user to the database
         db.users.push(newUser)
-        // Write the files pushed to db on the .json file 
+        // write the files pushed to db on the .json file 
         fs.writeFileSync("users.json", JSON.stringify(db))
         res.sendStatus(200)
     }
 })
 
 // log-in
-app.post('/log-in', (req, res) => {
+app.post('/front-log-in', (req, res) => {
 
     const {user} = req.body
     let found = false
-
+   
     for (usr of db.users) {
-        if (user.email == usr.email && user.password == usr.password) 
+        if (user.email == usr.email && user.password == usr.password) {
             found = true
+        }
     }
-
-    if (found) 
+    
+    if (found)
         res.sendStatus(200)
-    else 
+    else   
         res.sendStatus(403)
 })
 
-// Get all anecdotes posted by users and push them to the load of bacheca inside the container
+// get all anecdotes posted by users and push them to the load of bacheca inside the container
 app.get('/get-anecdotes', (req, res) => {
 
     let data = []  
@@ -92,7 +98,7 @@ app.get('/get-anecdotes', (req, res) => {
     res.send(myJson)
 })
 
-// Post a new anecdote
+// post a new anecdote
 app.post('/new-anecdote', (req, res) => {
 
     const { anecdote_text, user_email } = req.body
@@ -109,7 +115,7 @@ app.post('/new-anecdote', (req, res) => {
     res.sendStatus(200)
 })
 
-// Get all help requests posted by users
+// get all help requests posted by users
 app.get('/get-help-requests', (req, res) => {
 
     let data = []
@@ -129,7 +135,7 @@ app.get('/get-help-requests', (req, res) => {
     res.send(myJson)
 })
 
-// Post a new help request
+// post a new help request
 app.post('/new-help-request', (req, res) => {
 
     const {user_email, help_request_text} = req.body
@@ -146,7 +152,7 @@ app.post('/new-help-request', (req, res) => {
     res.sendStatus(200)
 })
 
-// Leaderboard
+// leaderboard creation
 app.get('/create-leaderboard', (req, res) => {
 
     let data = []
@@ -163,41 +169,106 @@ app.get('/create-leaderboard', (req, res) => {
     res.send(myJson)
 })
 
-// Vincolato ad amministratori
+/***************/           
+/* BACK OFFICE */
+/***************/             
+
+// administrators log-in
+app.post('/back-log-in', (req, res) => {
+
+    const { user } = req.body
+    let found = false
+
+    for (usr of admins_db.admins) {
+        if (user.email == usr.email && user.password == usr.password) {
+            found = true
+        }
+    }
+
+    if (found)
+        res.sendStatus(200)
+    else
+        res.sendStatus(403)
+})
+
+// get all users data (except for anecdotes and help, in a separate section)
 app.get('/get-users', (req, res) => {
 
+    let data = []
+
+    for (usr of db.users) {
+
+        data.push({
+            user_name: usr.name,
+            user_email: usr.email,
+            user_password: usr.password,
+            user_gamescore: usr.gameScore,
+            user_favoriteAnimal: usr.favoriteAnimal
+        })
+    }
+
+    var myJson = JSON.stringify(data)
+    res.send(myJson)
 })
 
-// Vincolato ad amministratori
-app.put('/modify-user', (req, res) => {
+// modify user data
+app.patch('/modify-user', (req, res) => {
 
+    const {user} = req.body
+
+    // search by oldName
+    for (usr of db.users) {
+        if (user.oldName == usr.name) {
+            usr.name = user.newName
+            usr.email = user.newEmail
+            usr.password = user.newPassword
+            usr.favoriteAnimal = user.newAnimal
+            usr.gameScore = user.newScore
+            fs.writeFileSync("users.json", JSON.stringify(db))
+            break
+        }
+    }
+    res.sendStatus(200)
 })
 
-// Vincolato ad amminstratori
+// delete any user
 app.delete('/delete-user', (req, res) => {
 
+    const { user } = req.body
+
+    for (usr of db.users) {
+        if (user.name == usr.name && user.name == usr.name) {
+            const indexToRemove = db.users.findIndex((pl) => pl.name === user.name)
+            db.users.splice(indexToRemove, 1)
+            fs.writeFileSync("users.json", JSON.stringify(db))
+        }
+    }
+    res.sendStatus(200)
 })
 
-// Vincolato ad amministratori
+app.get('/get-anecdotes', (req, res) => {
+
+})
+
 app.put('/modify-anecdote', (req, res) => {
 
 })
 
-// Vincolato ad amminstratori
 app.delete('/delete-anecdote', (req, res) => {
 
 })
 
-// Vincolato ad amministratori
+app.get('/get-help-reqs', (req, res) => {
+
+})
+
 app.put('/modify-help-req', (req, res) => {
 
 })
 
-// Vincolato ad amminstratori
 app.delete('/delete-help-req', (req, res) => {
 
 })
-
 
 
 app.listen(3000, () => {

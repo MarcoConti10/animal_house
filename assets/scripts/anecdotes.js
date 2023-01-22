@@ -9,6 +9,7 @@ getAnecdotes = async () => {
     // modify DOM here
     if (response.status == 200) {
 
+        // try without const too
         data = await response.json()
 
         // Clear before showing all anecdotes to avoid showing them twice
@@ -36,9 +37,9 @@ postAnecdote = async (event) => {
 
     event.preventDefault();
 
-    const data = new FormData(event.target);
+    const data = new FormData(event.target)
 
-    const value = Object.fromEntries(data.entries());
+    const value = Object.fromEntries(data.entries())
 
     // Get the :id params in the url section
     const urlSearchParams = new URLSearchParams(window.location.search);

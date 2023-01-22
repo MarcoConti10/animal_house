@@ -4,25 +4,28 @@
             "name": "test1",
             "email": "test1@gmail.com",
             "password": "test1",
-            "favoriteAnimal": "dog",
-            "gameScore": 15,
-            "administrator": false,
-            "anecdotes": [
-                {
-                    "content": "My dog is so funny"
-                },
-                {
-                    "content": "My cat is so crazy"
-                }
-            ],
-            "helpRequests": [
-                {
-                    "content": "My dog is not feeling good today. He must have a fever. What should I do?"
-                },
-                {
-                    "content": "My cat seems to have something dark on his hair. What is it?"
-                }
-            ]
+            "favoriteAnimal": "cat",
+            "gameScore": "0",
+            "anecdotes": [],
+            "helpRequests": []
+        },
+        {
+            "name": "test2",
+            "email": "test2@gmail.com",
+            "password": "test2",
+            "favoriteAnimal": "cat",
+            "gameScore": "0",
+            "anecdotes": [],
+            "helpRequests": []
+        },
+        {
+            "name": "test3",
+            "email": "test3@gmail.com",
+            "password": "test3",
+            "favoriteAnimal": "cat",
+            "gameScore": "0",
+            "anecdotes": [],
+            "helpRequests": []
         }
     ]
 }
