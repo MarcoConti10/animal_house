@@ -95,5 +95,4 @@ generateAnimalQuestion = async () => {
 
   data = await response.json()
   // console.log(data.results[0])
-
 }
