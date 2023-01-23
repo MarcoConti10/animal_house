@@ -86,7 +86,7 @@ function generateAnimalQuestion() {
 
 generateAnimalQuestion = async () => {
 
-  let response1 = await fetch('/get-questions', {
+  let response = await fetch('/get-questions', {
     method: "GET",
     headers: {
       "Content-type": "application/json"
