@@ -1,10 +1,12 @@
 const express = require('express')
 const fs = require('fs')
+const fetch = require('node-fetch') 
+
 // database loading
 const db = JSON.parse(fs.readFileSync("./users.json"))
 const admins_db = JSON.parse(fs.readFileSync("./administrators.json"))
 
-const app = express();
+const app = express()
 
  // load my assets
 app.use(express.static(__dirname + '/assets/html'))
@@ -19,6 +21,31 @@ app.use(express.urlencoded({extended: true}))
 // show <index.html> at the beginning
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
+})
+
+/****************/
+/*    GAME      */
+/****************/
+
+app.get('/get-questions', async (req, res) => {
+
+    const url_api = "https://opentdb.com/api.php?amount=10&category=27&type=boolean"
+
+    // async/await
+    let response = await fetch (url_api)
+    let data = await response.json()
+    // attenzione ai caratteri &quot e altri non codificati perfettamente
+    //console.log(data.results[2].question)
+    res.send(data)
+
+    //promises (no need of async in the (req, res))
+    /*
+    fetch(url_api)
+        .then(res => {
+          return res.json()})
+        .then(json =>{
+         res.send(json)})
+    */
 })
 
 /****************/
@@ -78,7 +105,7 @@ app.post('/front-log-in', (req, res) => {
         res.sendStatus(403)
 })
 
-// get all anecdotes posted by users and push them to the load of bacheca inside the container
+// get all anecdotes posted by users (route both for front and back office)
 app.get('/get-anecdotes', (req, res) => {
 
     let data = []  
@@ -88,8 +115,8 @@ app.get('/get-anecdotes', (req, res) => {
         for (user_anecdote of usr.anecdotes) {
             
             data.push({
-                anecdote: user_anecdote.content,
-                email: usr.email
+                name: usr.name,
+                anecdote: user_anecdote.content
             })
         }
     }
@@ -115,7 +142,7 @@ app.post('/new-anecdote', (req, res) => {
     res.sendStatus(200)
 })
 
-// get all help requests posted by users
+// get all help requests posted by users (route both for front and back office)
 app.get('/get-help-requests', (req, res) => {
 
     let data = []
@@ -244,10 +271,6 @@ app.delete('/delete-user', (req, res) => {
         }
     }
     res.sendStatus(200)
-})
-
-app.get('/get-anecdotes', (req, res) => {
-
 })
 
 app.put('/modify-anecdote', (req, res) => {

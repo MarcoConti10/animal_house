@@ -20,7 +20,20 @@
     <link href="style.css" type="text/css" rel="stylesheet">
 </head>
 
-<body>
+<body onload="generateAnimalQuestion()">
+
+    <h1>Game</h1>
+
+    <script src="game.js"></script>
+</body>
+</html>
+
+
+<!-- 
+<div id="header">
+    
+</div>
+<body onload="generateAnimalQuestion()">
 
 <div id="quiz-container">
     <h1>Quiz sugli animali ma molto bello</h1>
@@ -48,3 +61,32 @@
 <script src="/assets/scripts/game.js"></script>
 </body>
 </html>
+<div id="footer">
+    <script>
+        // Utilizza fetch() per recuperare il contenuto del file header.html
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                // Inserisci il contenuto del file footer.html nel div con id "header"
+                document.getElementById('header').innerHTML = data;
+            })
+            .catch(error => console.log(error));
+
+        // Utilizza fetch() per recuperare il contenuto del file footer.html
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                // Inserisci il contenuto del file footer.html nel div con id "footer"
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.log(error));
+    </script>
+
+<script src="game.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+</body>
+</div>
+
+--> 
