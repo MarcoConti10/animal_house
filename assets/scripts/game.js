@@ -49,14 +49,15 @@ function displayQuestion(question) {
 }
 */
 
+ function generateAnimalQuestion() {
 
-function generateAnimalQuestion() {
-
-  $.ajax({
+   $.ajax({
     url: 'https://www.opentdb.com/api.php?amount=10&category=27&type=boolean',
     dataType: 'JSON',
     method: 'GET',
     success: function(results) {
+      console.log(results);
+    
       var resultQA = results.results;
       var randomQaA = resultQA[Math.floor(Math.random() * resultQA.length)]
       var question = randomQaA.question;
