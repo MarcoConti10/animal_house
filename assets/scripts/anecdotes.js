@@ -16,14 +16,14 @@ getAnecdotes = async () => {
 
         for (let index = 0; index < data.length; index++) {
 
-            email = data[index].email
+            name = data[index].name
             anecdote = data[index].anecdote
 
             document.querySelector(".anecdotes-container").innerHTML +=
                 `
             <div class="card" style="width: 22rem;">
                     <div class="card-body">
-                        <h5 class="id">Aneddoto di ${email} </h5>
+                        <h5 class="id">Aneddoto di ${name} </h5>
                         <p class="card-text">${anecdote}</p>
                     </div>
             </div>
