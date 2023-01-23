@@ -22,7 +22,7 @@ handleSubmit = async (event) => {
             }
         )
     })
-    // console.log(response.status)
+    
     if (response.status == 200) 
         window.location.href = "http://localhost:3000/front-intro.html?id=" + value.email
     else 

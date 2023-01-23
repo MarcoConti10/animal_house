@@ -5,8 +5,15 @@
             "email": "test1@gmail.com",
             "password": "test1",
             "favoriteAnimal": "cat",
-            "gameScore": "0",
-            "anecdotes": [],
+            "gameScore": "3",
+            "anecdotes": [
+                {
+                    "content": "primo aneddoto di test1"
+                },
+                {
+                    "content": "test 1, again"
+                }
+            ],
             "helpRequests": []
         },
         {
@@ -14,8 +21,12 @@
             "email": "test2@gmail.com",
             "password": "test2",
             "favoriteAnimal": "cat",
-            "gameScore": "0",
-            "anecdotes": [],
+            "gameScore": "20",
+            "anecdotes": [
+                {
+                    "content": "aneddoto di test2"
+                }
+            ],
             "helpRequests": []
         },
         {
@@ -23,8 +34,12 @@
             "email": "test3@gmail.com",
             "password": "test3",
             "favoriteAnimal": "cat",
-            "gameScore": "0",
-            "anecdotes": [],
+            "gameScore": "15",
+            "anecdotes": [
+                {
+                    "content": "aneddoto di test3"
+                }
+            ],
             "helpRequests": []
         }
     ]

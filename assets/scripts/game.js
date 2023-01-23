@@ -15,7 +15,8 @@ fetch(`https://opentdb.com/api.php?amount=10&category=27&type=multiple`)
   })
   .catch(error => console.log(error));
 
-function checkAnswer() {
+
+function checkAnswer() = {
   // Recupera la risposta selezionata dall'utente
   var selectedAnswer = document.querySelector('input[name="answer"]:checked').value;
   // Verifica se la risposta è corretta
@@ -49,11 +50,14 @@ function displayQuestion(question) {
 }
 */
 
-
+/*
 function generateAnimalQuestion() {
 
   $.ajax({
-    url: 'https://www.opentdb.com/api.php?amount=10&category=27&type=boolean',
+    headers: {
+      'Content-Type': 'application/json'
+      },
+    url: 'https://opentdb.com/api.php?amount=10&category=27&type=boolean&encode=url3986',
     dataType: 'JSON',
     method: 'GET',
     success: function(results) {
@@ -77,4 +81,19 @@ function generateAnimalQuestion() {
       console.log('err');
     }
   });
+}
+*/
+
+generateAnimalQuestion = async () => {
+
+  let response1 = await fetch('/get-questions', {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json"
+    }
+  })
+
+  data = await response.json()
+  // console.log(data.results[0])
+
 }
