@@ -35,8 +35,7 @@ app.get('/get-questions', async (req, res) => {
     let response = await fetch (url_api)
     let data = await response.json()
     // attenzione ai caratteri &quot e altri non codificati perfettamente
-    console.log(data.results[2].question)
-    // console.log(data.results)
+    //console.log(data.results[2].question)
     res.send(data)
 
     //promises (no need of async in the (req, res))
