@@ -40,7 +40,6 @@ loadUsersAnagraphic = () => {
     window.location.href = "users-anagraphic.html"
 }
 
-// GET 
 loadAnecdotesChange = () => {
     window.location.href = "anecdotes-change.html"
 }
