@@ -100,7 +100,7 @@ getAnecdotes = async () => {
             "Content-type": "application/json"
         }
     })
-    // modify DOM here
+
     if (response.status == 200) {
 
         const data = await response.json()
@@ -151,7 +151,7 @@ postAnecdote = async (event) => {
                 }
         )
     })
-    // modify DOM here
+
     if (response.status == 200) {
 
         let user = await response.json()

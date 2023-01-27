@@ -1,7 +1,4 @@
-/***************/
-/* FRONT OFFICE */
-/***************/
-
+// front office
 loadAnecdotesWall = () => {
 
     // Get the :id params in the url section
@@ -32,10 +29,7 @@ loadLeaderboard = () => {
 
 }
 
-/***************/
-/* BACK OFFICE */
-/***************/
-
+// back office
 loadUsersAnagraphic = () => {
     window.location.href = "users-anagraphic.html"
 }
@@ -44,7 +38,6 @@ loadAnecdotesChange = () => {
     window.location.href = "anecdotes-change.html"
 }
 
-// GET 
 loadHelpChange = () => {
     window.location.href = "help-change.html"
 }
