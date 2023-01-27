@@ -19,34 +19,84 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 // show <index.html> at the beginning
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     res.sendFile(__dirname + '/index.html')
 })
 
 /****************/
-/*    GAME      */
+/*     VIDEO    */
 /****************/
 
-app.get('/get-questions', async (req, res) => {
+app.get('/video', async (req, res) => {
+    
+    const API_KEY = "AIzaSyCo-NoyfX2PMR-RM8pQW_7-wO-cRunvqao";
+    const searchTerm = 'funny animals';
+    
+    //Fetch the video list from youtube API
+    const videoList = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&key=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => data.items);
 
-    const url_api = "https://opentdb.com/api.php?amount=10&category=27&type=boolean"
+    // Select a random video
+    const randomVideoIndex = Math.floor(Math.random() * videoList.length);
+    const videoId = videoList[randomVideoIndex].id.videoId;
+    
+    //Check the status of the video
+    const videoInfo = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=status&id=${videoId}&key=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => data.items[0]);
 
-    // async/await
-    let response = await fetch (url_api)
-    let data = await response.json()
-    // attenzione ai caratteri &quot e altri non codificati perfettamente
-    //console.log(data.results[2].question)
-    res.send(data)
+    if(videoInfo.status.uploadStatus === "processed" && videoInfo.status.privacyStatus === "public"){
 
-    //promises (no need of async in the (req, res))
-    /*
-    fetch(url_api)
-        .then(res => {
-          return res.json()})
-        .then(json =>{
-         res.send(json)})
-    */
+        // return the video id to the client
+        res.status(200);
+        res.send(JSON.stringify(videoId));
+    }else{
+        res.status(400).send("The video is not available");
+    }
 })
+
+
+
+/****************/
+/*     GAME     */
+/****************/
+
+app.post('/update-score', (req, res) => {
+    if (!req.body.username) {
+        return res.status(400).json({ error: 'Username is required' });
+    }
+    // read the users.json file
+    fs.readFile('users.json', (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error reading users file' });
+        }
+        const users = JSON.parse(data);
+        // find the user and update their score
+        const userIndex = users.findIndex((user) => user.username === req.body.username);
+        if (userIndex === -1) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        users[userIndex].gameScore += 1;
+        // write the updated users list to the file
+        fs.writeFile('users.json', JSON.stringify(users), (writeErr) => {
+            if (writeErr) {
+                return res.status(500).json({ error: 'Error updating users file' });
+            }
+            return res.json({ message: 'Score updated' });
+        });
+    });
+});
+
+app.get('/question', (req, res) => {
+    request('https://opentdb.com/api.php?amount=1&category=27&type=boolean', { json: true }, (err, response, body) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error fetching question' });
+        }
+        return res.json(body);
+    });
+});
+
 
 /****************/
 /* FRONT OFFICE */
@@ -106,7 +156,7 @@ app.post('/front-log-in', (req, res) => {
 })
 
 // get all anecdotes posted by users (route both for front and back office)
-app.get('/get-anecdotes', (req, res) => {
+app.get('/get-anecdotes', (_req, res) => {
 
     let data = []  
 
@@ -143,7 +193,7 @@ app.post('/new-anecdote', (req, res) => {
 })
 
 // get all help requests posted by users (route both for front and back office)
-app.get('/get-help-requests', (req, res) => {
+app.get('/get-help-requests', (_req, res) => {
 
     let data = []
 
@@ -180,7 +230,7 @@ app.post('/new-help-request', (req, res) => {
 })
 
 // leaderboard creation
-app.get('/create-leaderboard', (req, res) => {
+app.get('/create-leaderboard', (_req, res) => {
 
     let data = []
 
@@ -219,7 +269,7 @@ app.post('/back-log-in', (req, res) => {
 })
 
 // get all users data (except for anecdotes and help, in a separate section)
-app.get('/get-users', (req, res) => {
+app.get('/get-users', (_req, res) => {
 
     let data = []
 
@@ -273,23 +323,23 @@ app.delete('/delete-user', (req, res) => {
     res.sendStatus(200)
 })
 
-app.put('/modify-anecdote', (req, res) => {
+app.put('/modify-anecdote', (_req, _res) => {
 
 })
 
-app.delete('/delete-anecdote', (req, res) => {
+app.delete('/delete-anecdote', (_req, _res) => {
 
 })
 
-app.get('/get-help-reqs', (req, res) => {
+app.get('/get-help-reqs', (_req, _res) => {
 
 })
 
-app.put('/modify-help-req', (req, res) => {
+app.put('/modify-help-req', (_req, _res) => {
 
 })
 
-app.delete('/delete-help-req', (req, res) => {
+app.delete('/delete-help-req', (_req, _res) => {
 
 })
 

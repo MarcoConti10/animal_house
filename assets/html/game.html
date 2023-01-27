@@ -20,12 +20,37 @@
     <link href="style.css" type="text/css" rel="stylesheet">
 </head>
 
-<body onload="generateAnimalQuestion()">
+<body>
 
-    <h1>Game</h1>
+<h1>Welcome to the Animals Quiz</h1>
+<button id="start-quiz-button">Start Quiz</button>
+<div id="quiz-container" style="display: none;">
+    <p id="question"></p>
+    <button id="true-button">True</button>
+    <button id="false-button">False</button>
+    <button id="next-question-button" style="display: none;">Next Question</button>
+</div>
+<p id="result-message" style="display: none;"></p>
+    
+    <h1>Funny animal video</h1>
+    <div id="video-container">
+        <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 
-    <script src="game.js"></script>
+
+
+<script src="randvideo.js"></script>
+<script src="game.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        getRandomVideo();
+        startGame();
+    });
+</script>
+
 </body>
+
 </html>
 
 

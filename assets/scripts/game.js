@@ -1,100 +1,47 @@
-/*var questions;
-var currentQuestion;
-var score = 0;
-var i = 1;
+startGame = async () => {
 
-// Recupera le domande dall'API
-fetch(`https://opentdb.com/api.php?amount=10&category=27&type=multiple`)
-  .then(response => response.json())
-  .then(data => {
-    // Salva le domande in una variabile
-    questions = data;
-    // Mostra la prima domanda
-    currentQuestion = questions[0];
-    displayQuestion(currentQuestion);
-  })
-  .catch(error => console.log(error));
+  const form = document.querySelector('form');
+  const result = document.querySelector('.result');
+  const score = document.querySelector('.score');
+  let currentScore = 0;
 
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-function checkAnswer() = {
-  // Recupera la risposta selezionata dall'utente
-  var selectedAnswer = document.querySelector('input[name="answer"]:checked').value;
-  // Verifica se la risposta è corretta
-  if (selectedAnswer === currentQuestion.correctAnswer) {
-    // Risposta corretta, aggiungi un punto al punteggio
-    score++;
-    result.innerHTML = "Corretto!";
-  } else {
-    result.innerHTML = "Sbagliato!";
-  }
-  // Mostra il punteggio
-  scoreElement.innerHTML = "Punteggio: " + score;
-  // Passa alla prossima domanda
-  currentQuestion = questions[i++];
-  displayQuestion(currentQuestion);
-}
+    fetch('/question')
+      .then((response) => response.json())
+      .then((question) => {
+        form.question.value = question.question;
+        form.answer.value = question.answer;
+      });
+  });
 
-const questionElement = document.getElementById("question-container");
-
-function displayQuestion(question) {
-  // Popola la domanda e le scelte nella pagina HTML
-  questionElement.innerHTML = question.question;
-  questionElement.innerHTML += question.choices
-    .map(
-      (choice, index) => `
-      <input type="radio" name="answer" id="answer-${index}" value="${choice}">
-      <label for="answer-${index}">${choice}</label>
-    `
-    )
-    .join('');
-}
-*/
-
-/*
-function generateAnimalQuestion() {
-
-  $.ajax({
-    headers: {
-      'Content-Type': 'application/json'
-      },
-    url: 'https://opentdb.com/api.php?amount=10&category=27&type=boolean&encode=url3986',
-    dataType: 'JSON',
-    method: 'GET',
-    success: function(results) {
-      console.log(results);
-    
-      var resultQA = results.results;
-      var randomQaA = resultQA[Math.floor(Math.random() * resultQA.length)]
-      var question = randomQaA.question;
-      var answer = randomQaA.correct_answer;
-
-      var questionH3 = document.getElementById('question');
-      var answerH3 = document.getElementById('answer');
-
-      questionH3.innerHTML = question;
-      answerH3.innerHTML = '';
-      if (answer === "True") {
-      setTimeout(function(){document.getElementById("answer").innerHTML="<em>" + answer + "!" + "<em>";}, 4000);
-      } else {
-        setTimeout(function(){document.getElementById("answer").innerHTML="<strong>" + answer + "." + "<strong>";}, 4000);
-      }
-    },
-    error: function(err) {
-      console.log('err');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const answer = form.answer.value;
+    const userAnswer = form.userAnswer.value;
+    if (answer === userAnswer) {
+      result.textContent = 'The answer is correct';
+      currentScore += 1;
+      score.textContent = `Your current score is: ${currentScore}`;
+      fetch('/update-score', {
+        method: 'POST',
+        body: JSON.stringify({ username: 'username', score: currentScore }),
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            console.error(data.error);
+          } else {
+            console.log(`Score updated for user ${data.username}`);
+          }
+        })
+        .catch((error) => {
+          console.error(`Error updating score: ${error}`);
+        });
+    } else {
+      result.textContent = 'Sorry, but it is not correct';
     }
   });
-}
-*/
-
-generateAnimalQuestion = async () => {
-
-  let response = await fetch('/get-questions', {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json"
-    }
-  })
-
-  data = await response.json()
-  // console.log(data.results[0])
 }
