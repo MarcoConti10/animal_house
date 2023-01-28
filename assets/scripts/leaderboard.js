@@ -23,7 +23,8 @@ createLeaderboard = async () => {
                 `
                     <tr>
                         <td class="email">${email}</td>
-                        <td class"value">${gameScore}</td>
+                        <td class="position">${index + 1}</td>
+                        <td class="value">${gameScore}</td>
                     </tr>
                 `
         }

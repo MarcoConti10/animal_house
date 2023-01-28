@@ -6,28 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Help Wall</title>
 
+    <!-- Boostrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
+    <!-- Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <!-- custom CSS -->
     <link href="style.css" type="text/css" rel="stylesheet">
 
 </head>
 
-<body>
+<body class="text-center">
 
-    <h1>Help Wall</h1>
+    <h2 class="welcomeQuote">Help Wall 
+        <span class="material-symbols-outlined">live_help</span>    
+    </h2>
 
-    <form>
-    
-        <textarea class="text" name="text" rows="5" cols="40"
-            placeholder="Ask for help for your animals here!"></textarea><br>
-        <br>
-        <button id="help-request-posting">Post Help</button>
-    </form>
-
+    <textarea id="textArea" name="text" rows="5" cols="40" placeholder="Ask for help for your animals here!"></textarea><br>
     <br>
-    <!-- Button clickable only once to avoid getting the help requests multiple times -->
-    <button id="help-button" onclick="getHelpRequests(), this.onclick=null">View all help requests</button>
+    <button type="button" id="help-req-posting" class="btn btn-primary btn-block" onclick="postHelpRequest()">Post Help</button>
+    
+    <!-- button clickable only once to avoid getting the anecdotes multiple times -->
+    <button type="button" id="help-req-view" class="btn btn-primary btn-block lg-4"
+        onclick="getHelpRequests(), this.onclick=null">View all help requests</button>
+    
+    <!-- container for all help requests -->
     <div class="help-requests-container"></div>
 
     <script src="help-wall.js"></script>

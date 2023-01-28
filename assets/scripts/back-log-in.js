@@ -1,14 +1,9 @@
-handleSubmit = async (event) => {
+logIn = async () => {
 
-    event.preventDefault();
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
 
-    // FormData API
-    const data = new FormData(event.target);
-
-    // Still a javascript object here
-    const value = Object.fromEntries(data.entries());
-
-    var response = await fetch("/back-log-in", {
+    let response = await fetch("/back-log-in", {
         method: "POST",
         headers: {
             "Content-type": "application/json"
@@ -16,18 +11,15 @@ handleSubmit = async (event) => {
         body: JSON.stringify(
             {
                 user: {
-                    email: value.email,
-                    password: value.password
+                    email: email,
+                    password: password
                 }
             }
         )
     })
-    // console.log(response.status)
-    if (response.status == 200)
-        window.location.href = "http://localhost:3000/back-intro.html"
-    else
-        alert("Errore: Email o password sbagliati.")
-}
 
-const form = document.querySelector('form');
-form.addEventListener('submit', handleSubmit);
+    if (response.status == 200)
+        window.location.href = "http://localhost:3000/back-intro.html?id=" + email
+    else
+        alert("Email o password sbagliati.")
+}

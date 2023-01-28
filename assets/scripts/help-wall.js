@@ -103,7 +103,7 @@ getHelpRequests = async () => {
             "Content-type": "application/json"
         }
     })
-    // modify DOM here
+    
     if (response.status == 200) {
 
         data = await response.json()
@@ -117,24 +117,25 @@ getHelpRequests = async () => {
             help_request = data[index].help_request
 
             document.querySelector(".help-requests-container").innerHTML +=
-                `
-            <div class="card" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="id">Richiesta di aiuto di: ${email} </h5>
-                        <p class="card-text">${help_request}</p>
+             `
+              <br>
+                <div class="col-md-12">
+                    <div class="card mx-auto" style="width: 20%; color: black">
+                        <div class="card-body">
+                            <h5 class="id">Richiesta di aiuto di ${email} </h5>
+                            <p class="card-text">${help_request}</p>
+                        </div>
                     </div>
-            </div>
-        `
+                </div>
+             <br>
+            `
         }
     }
 }
 
-postHelpRequest = async (event) => {
+postHelpRequest = async () => {
 
-    event.preventDefault();
-
-    const data = new FormData(event.target);
-    const value = Object.fromEntries(data.entries());
+    const text = document.getElementById("textArea").value
 
     // Get the :id params in the url section
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -148,8 +149,8 @@ postHelpRequest = async (event) => {
         body: JSON.stringify(
             {
                 // Pass the :id in the url to the server for simple retrieving of information
-                user_email: params.id,
-                help_request_text: value.text,
+                help_request_text: text,
+                user_email: params.id
             }
         )
     })
@@ -157,16 +158,18 @@ postHelpRequest = async (event) => {
     if (response.status == 200) {
 
         document.querySelector(".help-requests-container").innerHTML +=
-            `
-            <div class="card" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="id">Richiesta di aiuto di: ${params.id} </h5>
-                        <p class="card-text">${value.text}</p>
+        `
+            <br>
+                <div class="col-md-12">
+                    <div class="card mx-auto" style="width: 20%; color: black">
+                        <div class="card-body">
+                            <h5 class="id">Richiesta di aiuto di ${params.id} </h5>
+                            <p class="card-text">${text}</p>
+                        </div>
                     </div>
-            </div>
+                </div>
+            <br>
         `
     }
 }
 
-const form = document.querySelector('form');
-form.addEventListener('submit', postHelpRequest);

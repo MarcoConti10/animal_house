@@ -3,25 +3,33 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- responsive viewport settings -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Front Intro Page</title>
-    <link href="style.css" type="text/css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Front Intro</title>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
+    <!-- Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    
+    <!-- custom CSS-->
+    <link href="style.css" type="text/css" rel="stylesheet">
 </head>
 
-<body>  
-
-<h1>Welcome to your personal page. Choose your next action.</h1>
-
-<button id="anecdotes-wall" onclick="loadAnecdotesWall()">Anecdotes</button>
-<button id="help-wall" onclick="loadHelpWall()">Ask for Help</button>
-<button id="leaderboard" onclick="loadLeaderboard()">Leaderboard</button>
-
-<!-- Helper function not needed for the leaderboard -->
-<!-- <a href="leaderboard.html"><button>Leaderboard</button></a> --> 
+<body class="text-center">  
     
-<script src="utilities.js"></script>
+    <h2 class="welcomeQuote">Welcome to your personal page. Choose your service.</h2>
 
+    <div class="introButtonsWrap">
+        <button type="button" id="anecdotes-wall" class="btn btn-primary btn-block lg-4" onclick="loadAnecdotesWall()">Anecdotes</button>
+        <button type="button" id="help-wall" class="btn btn-primary btn-block lg-4" onclick="loadHelpWall()">Ask for Help</button>
+        <button type="button" id="leaderboard" class="btn btn-primary btn-block lg-4"onclick="loadLeaderboard()">Leaderboard</button>
+    </div>
+        
+    <script src="utilities.js"></script>
 </body>
 </html>
