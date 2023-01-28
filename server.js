@@ -80,18 +80,19 @@ app.post('/sign-in', (req, res) => {
 // users log-in
 app.post('/front-log-in', (req, res) => {
 
-    const {user} = req.body
+    const { user } = req.body
     let found = false
-   
+
     for (usr of db.users) {
         if (user.email == usr.email && user.password == usr.password) {
             found = true
+            break
         }
     }
-    
-    if (found)
+
+    if (found == true) 
         res.sendStatus(200)
-    else   
+    else 
         res.sendStatus(403)
 })
 

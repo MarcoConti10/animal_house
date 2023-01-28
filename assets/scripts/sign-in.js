@@ -1,15 +1,10 @@
-handleSubmit = async (event) => {
+signIn = async () => {
 
-    event.preventDefault();
+    const name = document.getElementById('name').value
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+    const favoriteAnimal = document.getElementById('favoriteAnimal').value
 
-    // FormData API
-    const data = new FormData(event.target);
-
-    // Get all the entries from the form 
-    // Still a javascript object here
-    const value = Object.fromEntries(data.entries());
-
-    // Send the POST request to the server
     var response = await fetch("/sign-in", {
         method: "POST",
         headers: {
@@ -18,19 +13,18 @@ handleSubmit = async (event) => {
         body: JSON.stringify(
             {
                 user: {
-                    name: value.name,
-                    email: value.email,
-                    password: value.password,
-                    favoriteAnimal: value.favoriteAnimal
+                    name: name,
+                    email: email,
+                    password: password,
+                    favoriteAnimal: favoriteAnimal
                 }
             }
         )
     })
-    if (response.status == 200)
-        window.location.href = "http://localhost:3000/front-intro.html?id="+ value.email
-    else
-        alert("Email già esistente. Scegline un'altra.");
-}
 
-const form = document.querySelector('form');
-form.addEventListener('submit', handleSubmit);
+    if (response.status == 200)
+        window.location.href =
+            "http://localhost:3000/front-intro.html?id=" + email
+    else
+        alert("Email già esistente. Scegline un'altra.")
+}

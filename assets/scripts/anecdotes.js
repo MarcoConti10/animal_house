@@ -114,25 +114,26 @@ getAnecdotes = async () => {
             anecdote = data[index].anecdote
 
             document.querySelector(".anecdotes-container").innerHTML +=
-                `
-            <div class="card" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="id">Aneddoto di ${name} </h5>
-                        <p class="card-text">${anecdote}</p>
+           /* give each card 12 columns, and with mx-auto, put them at the center of these columns */ 
+            `
+            <br>
+                <div class="col-md-12">
+                    <div class="card mx-auto" style="width: 20%; color: black">
+                        <div class="card-body">
+                            <h5 class="id">Aneddoto di ${name} </h5>
+                            <p class="card-text">${anecdote}</p>
+                        </div>
                     </div>
-            </div>
-        `
+                </div>
+            <br>
+            `
         }
     }
 }
 
-postAnecdote = async (event) => {
+postAnecdote = async () => {
 
-    event.preventDefault();
-
-    const data = new FormData(event.target)
-
-    const value = Object.fromEntries(data.entries())
+    const text = document.getElementById("textArea").value
 
     // Get the :id params in the url section
     const urlSearchParams = new URLSearchParams(window.location.search)
@@ -146,7 +147,7 @@ postAnecdote = async (event) => {
         body: JSON.stringify(
             {
             // Pass the :id in the url to the server for simple retrieving of information
-                    anecdote_text: value.text,
+                    anecdote_text: text,
                     user_email: params.id
                 }
         )
@@ -157,17 +158,20 @@ postAnecdote = async (event) => {
         let user = await response.json()
 
         document.querySelector(".anecdotes-container").innerHTML += 
-        `
-            <div class="card" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="id">Aneddoto di ${user.name} </h5>
-                        <p class="card-text">${value.text}</p>
+
+            `
+            <br>
+                <div class="col-md-12">
+                    <div class="card mx-auto" style="width: 20%; color: black">
+                        <div class="card-body">
+                            <h5 class="id">Aneddoto di ${user.name} </h5>
+                            <p class="card-text">${text}</p>
+                        </div>
                     </div>
-            </div>
-        `
+                </div>
+            <br>
+            `
     }
 }
 
-const form = document.querySelector('form')
-form.addEventListener('submit', postAnecdote)
 

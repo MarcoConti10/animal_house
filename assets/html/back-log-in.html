@@ -21,17 +21,23 @@
 </head>
 
 <body>
-    <form>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" />
 
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" />
-
-        <button id="log-in-button">Submit</button>
-
+    <form class="form text-center" id="formLog">
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <input type="email" id="email" class="form-control-lg" placeholder="Email" />
+        </div>
+    
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <input type="password" id="password" class="form-control-lg" placeholder="Password" />
+        </div>
+    
+        <!-- Submit button -->
+        <button type="button" id="button" class="btn btn-primary btn-block lg-4" onclick="logIn()">Log in</button>
+    
     </form>
-
+    
     <script src="back-log-in.js"></script>
 </body>
 
