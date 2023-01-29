@@ -7,6 +7,8 @@ TO-DO:
     -) Validate all fiedls of sign-in form and log-in (maybe not necessary). Se esiste già una mail o username di quel tipo, non fa andare avanti.
     -) Separate routing from server
     -) Change global font
+    -) Better tables css
+    -) Merge "users_container" and "anecdotes_container" in one single "container" for CSS purposes
     -) Don't allow anecdotes or help requests already existent
     -) Merge back-log-in & front-log-in functions 
     -) Check if <app.use(express.json()) & <app.use(express.urlencoded({extended: true}))> are 100% necessary

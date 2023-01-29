@@ -20,18 +20,18 @@ getUsers = async () => {
             favoriteAnimal = data[index].user_favoriteAnimal
 
             document.querySelector(".users-container").innerHTML +=
-                `   
-                    <div class="${name}" style="border:1px solid black">
-                        <p class="${name}" contenteditable="true">${name}</p>
-                        <p class="${name}" contenteditable="true">${email}</p>
-                        <p class="${name}" contenteditable="true">${password}</p>
-                        <p class="${name}" contenteditable="true">${favoriteAnimal}</p>
-                        <p class="${name}" contenteditable="true">${gameScore}</p>
-           
-                        <button class="${name}" onclick="modifyUser(this.className)">Modify User</button>
-                        <button class="${name}" onclick="deleteUser(this.className)">Delete User</button>
-                    </div>
-                `
+            `
+                <tr class="${name}">
+                    <td class="${name}" contenteditable="true">${name}</td>
+                    <td class="${name}" contenteditable="true">${email}</td>
+                    <td class="${name}" contenteditable="true">${password}</td>
+                    <td class="${name}" contenteditable="true">${favoriteAnimal}</td>
+                    <td class="${name}" contenteditable="true">${gameScore}</td>
+
+                    <td class="${name}" onclick="modifyUser(this.className)"><button><span class="material-symbols-outlined">edit</span></button></td>
+                    <td class="${name}" onclick="deleteUser(this.className)"><button><span class="material-symbols-outlined">remove</span></button></td>
+                </tr>
+            `
         }
     }
 }

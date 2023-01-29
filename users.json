@@ -5,10 +5,10 @@
             "email": "test1@gmail.com",
             "password": "test1",
             "favoriteAnimal": "cat",
-            "gameScore": "3",
+            "gameScore": "2",
             "anecdotes": [
                 {
-                    "content": "test 1 anecdote"
+                    "content": "test1"
                 },
                 {
                     "content": "test 1 anecdote x2"
@@ -25,10 +25,10 @@
             "email": "test2@gmail.com",
             "password": "test2",
             "favoriteAnimal": "cat",
-            "gameScore": "20",
+            "gameScore": "22",
             "anecdotes": [
                 {
-                    "content": "test 2 anecdote"
+                    "content": "test2"
                 }
             ],
             "helpRequests": [
@@ -42,45 +42,15 @@
             "email": "test3@gmail.com",
             "password": "test3",
             "favoriteAnimal": "cat",
-            "gameScore": "15",
+            "gameScore": "10",
             "anecdotes": [
                 {
-                    "content": "test 3 anecdote"
+                    "content": "test3 anecdote"
                 }
             ],
             "helpRequests": [
                 {
                     "content": "test3 help request"
-                },
-                {
-                    "content": "test3 help request x2"
-                }
-            ]
-        },
-        {
-            "name": "test4",
-            "email": "test4@gmail.com",
-            "password": "test4",
-            "favoriteAnimal": "bird",
-            "gameScore": 0,
-            "administrator": false,
-            "anecdotes": [
-                {
-                    "content": "test4 anecdote"
-                },
-                {
-                    "content": "test4 anecdote x2"
-                },
-                {
-                    "content": "test4 anecdote x3"
-                }
-            ],
-            "helpRequests": [
-                {
-                    "content": "test4 help request"
-                },
-                {
-                    "content": "test4 help request x2"
                 }
             ]
         }
