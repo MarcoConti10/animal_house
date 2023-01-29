@@ -72,6 +72,50 @@ body {
 	border-collapse: separate;
 }
 
+/*************************/
+/* users-anagraphic.html */
+/*************************/
+
+.users-container {
+	/* center the container */
+	margin-left: auto;
+	margin-right: auto;
+	/* spacing between table elements */
+	border-collapse: separate;
+}
+
+/*************************/
+/* anecdotes-change.html */
+/*************************/
+
+.anecdotes-container {
+	/* center the container */
+	margin-left: auto;
+	margin-right: auto;
+	/* spacing between table elements */
+	border-collapse: separate;
+}
+
+/*************************/
+/* help-change.html 	 */
+/*************************/
+
+.help-requests-container {
+	/* center the container */
+	margin-left: auto;
+	margin-right: auto;
+	/* spacing between table elements */
+	border-collapse: separate;
+}
+
+
+
+
+
+
+
+
+
 
 
 

@@ -17,23 +17,16 @@ loadHelpRequests = async () => {
             email = data[index].email
             helpRequest = data[index].help_request
 
-            /*
-                <div class="card" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="id">Aneddoto di ${email} </h5>
-                        <p class="card-text">${anecdote}</p>
-                    </div>
-                </div>
-            */
             document.querySelector(".help-requests-container").innerHTML +=
-                `
-             <div class="${email}" style="border:1px solid black">
-                        <p class="${email}" contenteditable="true">${helpRequest}</p>
+            `
+            <tr class="${email}">
+                <td class="${email}">${email}</td>
+                <td class="${email}" contenteditable="true">${helpRequest}</td>
 
-                        <button class="${email}" onclick="modifyHelpRequest('${helpRequest}', this.parentElement)">Modify Help Request</button>
-                        <button class="${email}" onclick="deleteHelpRequest(this.parentElement)">Delete Help Request</button>
-                    </div>
-        `
+                <td class="${email}" onclick="modifyHelpRequest('${helpRequest}', this.parentElement)"><button><span class="material-symbols-outlined">edit</span></button></td>
+                <td class="${email}" onclick="deleteHelpRequest(this.parentElement)"><button><span class="material-symbols-outlined">remove</span></button></td>
+            </tr>
+            `
         }
     }
 } 
@@ -41,7 +34,7 @@ loadHelpRequests = async () => {
 modifyHelpRequest = async (oldHelpRequest, parentElement) => {
 
     email = parentElement.getAttribute("class")
-    newHelpRequest = parentElement.children[0].textContent
+    newHelpRequest = parentElement.children[1].textContent
 
     var response = await fetch("/modify-help-request", {
 
@@ -69,7 +62,7 @@ modifyHelpRequest = async (oldHelpRequest, parentElement) => {
 deleteHelpRequest = async (parentElement) => {
 
     email = parentElement.getAttribute("class")
-    targetHelpRequest = parentElement.children[0].textContent
+    targetHelpRequest = parentElement.children[1].textContent
 
     var response = await fetch("/delete-help-request", {
 

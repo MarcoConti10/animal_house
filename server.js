@@ -11,7 +11,6 @@ const app = express()
  // load my assets
 app.use(express.static(__dirname + '/assets/html'))
 app.use(express.static(__dirname + '/assets/css'))
-app.use(express.static(__dirname + '/assets/img'))
 app.use(express.static(__dirname + '/assets/scripts'))
 
 // for parsing requests 
