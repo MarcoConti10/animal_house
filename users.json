@@ -8,13 +8,17 @@
             "gameScore": "3",
             "anecdotes": [
                 {
-                    "content": "primo aneddoto di test1"
+                    "content": "test 1 anecdote"
                 },
                 {
-                    "content": "test 1, again"
+                    "content": "test 1 anecdote x2"
                 }
             ],
-            "helpRequests": []
+            "helpRequests": [
+                {
+                    "content": "test1 help request"
+                }
+            ]
         },
         {
             "name": "test2",
@@ -24,10 +28,14 @@
             "gameScore": "20",
             "anecdotes": [
                 {
-                    "content": "aneddoto di test2"
+                    "content": "test 2 anecdote"
                 }
             ],
-            "helpRequests": []
+            "helpRequests": [
+                {
+                    "content": "test2 help request"
+                }
+            ]
         },
         {
             "name": "test3",
@@ -37,10 +45,17 @@
             "gameScore": "15",
             "anecdotes": [
                 {
-                    "content": "aneddoto di test3"
+                    "content": "test 3 anecdote"
                 }
             ],
-            "helpRequests": []
+            "helpRequests": [
+                {
+                    "content": "test3 help request"
+                },
+                {
+                    "content": "test3 help request x2"
+                }
+            ]
         },
         {
             "name": "test4",
@@ -49,8 +64,25 @@
             "favoriteAnimal": "bird",
             "gameScore": 0,
             "administrator": false,
-            "anecdotes": [],
-            "helpRequests": []
+            "anecdotes": [
+                {
+                    "content": "test4 anecdote"
+                },
+                {
+                    "content": "test4 anecdote x2"
+                },
+                {
+                    "content": "test4 anecdote x3"
+                }
+            ],
+            "helpRequests": [
+                {
+                    "content": "test4 help request"
+                },
+                {
+                    "content": "test4 help request x2"
+                }
+            ]
         }
     ]
 }

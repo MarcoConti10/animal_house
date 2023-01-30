@@ -102,7 +102,7 @@ app.get('/question', (req, res) => {
 /* FRONT OFFICE */
 /****************/ 
 
-// sign-in
+// users sign-in
 app.post('/sign-in', (req, res) => {
 
     const {user} = req.body
@@ -125,7 +125,6 @@ app.post('/sign-in', (req, res) => {
             password: user.password,
             favoriteAnimal: user.favoriteAnimal,
             gameScore: 0,
-            administrator: false,
             anecdotes: [], 
             helpRequests: []
         }
@@ -137,7 +136,7 @@ app.post('/sign-in', (req, res) => {
     }
 })
 
-// log-in
+// users log-in
 app.post('/front-log-in', (req, res) => {
 
     const {user} = req.body
@@ -155,8 +154,8 @@ app.post('/front-log-in', (req, res) => {
         res.sendStatus(403)
 })
 
-// get all anecdotes posted by users (route both for front and back office)
-app.get('/get-anecdotes', (_req, res) => {
+// get all anecdotes posted by users (endpoint both for front and back office)
+app.get('/get-anecdotes', (req, res) => {
 
     let data = []  
 
@@ -180,20 +179,23 @@ app.post('/new-anecdote', (req, res) => {
 
     const { anecdote_text, user_email } = req.body
     let i = 0
+    let name
     
     for (usr of db.users) {
         if (user_email == usr.email) {
+            name = usr.name
             db.users[i].anecdotes.push({content: anecdote_text})
             fs.writeFileSync("users.json", JSON.stringify(db))
             break
             }
         i=i+1
     }
-    res.sendStatus(200)
+    var myJson = JSON.stringify({name})
+    res.send(myJson)
 })
 
-// get all help requests posted by users (route both for front and back office)
-app.get('/get-help-requests', (_req, res) => {
+// get all help requests posted by users (endpoint both for front and back office)
+app.get('/get-help-requests', (req, res) => {
 
     let data = []
 
@@ -314,7 +316,7 @@ app.delete('/delete-user', (req, res) => {
     const { user } = req.body
 
     for (usr of db.users) {
-        if (user.name == usr.name && user.name == usr.name) {
+        if (user.name == usr.name) {
             const indexToRemove = db.users.findIndex((pl) => pl.name === user.name)
             db.users.splice(indexToRemove, 1)
             fs.writeFileSync("users.json", JSON.stringify(db))
@@ -323,24 +325,80 @@ app.delete('/delete-user', (req, res) => {
     res.sendStatus(200)
 })
 
-app.put('/modify-anecdote', (_req, _res) => {
+// modify a user anecdote
+app.patch('/modify-anecdote', (req, res) => {
+    
+    const { user } = req.body
 
+    for (usr of db.users) {
+        if (user.name == usr.name) {
+            for (let index = 0; index < usr.anecdotes.length; index++) {
+                if (user.oldAnecdote == usr.anecdotes[index].content) {
+                    usr.anecdotes[index].content = user.newAnecdote
+                    fs.writeFileSync("users.json", JSON.stringify(db))
+                    break
+                }
+            }
+        }
+    }
+    res.sendStatus(200)
 })
 
-app.delete('/delete-anecdote', (_req, _res) => {
+// delete a user anecdote 
+app.delete('/delete-anecdote', (req, res) => {
 
+    const { user } = req.body
+
+    for (usr of db.users) {
+        if (user.name == usr.name) {
+            for (let index = 0; index < usr.anecdotes.length; index++) {
+                if (user.targetAnecdote == usr.anecdotes[index].content) {
+                    usr.anecdotes.splice(index, 1)
+                    fs.writeFileSync("users.json", JSON.stringify(db))
+                    break
+                }
+            }
+        }
+    }
+    res.sendStatus(200)
 })
 
-app.get('/get-help-reqs', (_req, _res) => {
+// modify a user help request
+app.patch('/modify-help-request', (req, res) => {
 
+    const { user } = req.body
+
+    for (usr of db.users) {
+        if (user.email == usr.email) {
+            for (let index = 0; index < usr.helpRequests.length; index++) {
+                if (user.oldHelpRequest == usr.helpRequests[index].content) {
+                    usr.helpRequests[index].content = user.newHelpRequest
+                    fs.writeFileSync("users.json", JSON.stringify(db))
+                    break
+                }
+            }
+        }
+    }
+    res.sendStatus(200)
 })
 
-app.put('/modify-help-req', (_req, _res) => {
+// delete a user help request
+app.delete('/delete-help-request', (req, res) => {
 
-})
+    const { user } = req.body
 
-app.delete('/delete-help-req', (_req, _res) => {
-
+    for (usr of db.users) {
+        if (user.email == usr.email) {
+            for (let index = 0; index < usr.helpRequests.length; index++) {
+                if (user.targetHelpRequest == usr.helpRequests[index].content) {
+                    usr.helpRequests.splice(index, 1)
+                    fs.writeFileSync("users.json", JSON.stringify(db))
+                    break
+                }
+            }
+        }
+    }
+    res.sendStatus(200)
 })
 
 
