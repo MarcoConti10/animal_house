@@ -4,7 +4,7 @@ home --> game (non autenticato) --> game-intro: --> 1) Immagini o video buffi
                                                     2) Gioco sulle curiosità (tramite API)
                                                     3) Informazioni utili sanitarie e legali (vedere se da API o scritte su database)
                                                     4) Curiosità sugli animali (API)
-                                                    5) Bottone per passare al Front Office (e riporta su front-intro, passa id)
+                                                    5) Bottone per passare al Front Office (manda su front-log-in, che riporta automaticamente su front-intro)
 
 home --> front-office --> log-in/sign-in (pass email in both) --> front-intro: 1) Leaderboard 
                                                                                2) Anecdotes (onclick - pass email)
