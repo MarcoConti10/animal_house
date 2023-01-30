@@ -12,7 +12,6 @@ const app = express()
  // load my assets
 app.use(express.static(__dirname + '/assets/html'))
 app.use(express.static(__dirname + '/assets/css'))
-app.use(express.static(__dirname + '/assets/img'))
 app.use(express.static(__dirname + '/assets/scripts'))
 
 // for parsing requests 
@@ -114,18 +113,19 @@ app.post('/sign-in', (req, res) => {
 // users log-in
 app.post('/front-log-in', (req, res) => {
 
-    const {user} = req.body
+    const { user } = req.body
     let found = false
-   
+
     for (usr of db.users) {
         if (user.email == usr.email && user.password == usr.password) {
             found = true
+            break
         }
     }
-    
-    if (found)
+
+    if (found == true) 
         res.sendStatus(200)
-    else   
+    else 
         res.sendStatus(403)
 })
 

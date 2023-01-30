@@ -17,23 +17,16 @@ loadHelpRequests = async () => {
             email = data[index].email
             helpRequest = data[index].help_request
 
-            /*
-                <div class="card" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="id">Aneddoto di ${email} </h5>
-                        <p class="card-text">${anecdote}</p>
-                    </div>
-                </div>
-            */
             document.querySelector(".help-requests-container").innerHTML +=
-                `
-             <div class="${email}" style="border:1px solid black">
-                        <p class="${email}" contenteditable="true">${helpRequest}</p>
+            `
+            <tr class="${email}">
+                <td class="${email}">${email}</td>
+                <td class="${email}" contenteditable="true">${helpRequest}</td>
 
-                        <button class="${email}" onclick="modifyHelpRequest('${helpRequest}', this.parentElement)">Modify Help Request</button>
-                        <button class="${email}" onclick="deleteHelpRequest(this.parentElement)">Delete Help Request</button>
-                    </div>
-        `
+                <td class="${email}" onclick="modifyHelpRequest('${helpRequest}', this.parentElement)"><button><span class="material-symbols-outlined">edit</span></button></td>
+                <td class="${email}" onclick="deleteHelpRequest(this.parentElement)"><button><span class="material-symbols-outlined">remove</span></button></td>
+            </tr>
+            `
         }
     }
 } 
@@ -41,7 +34,7 @@ loadHelpRequests = async () => {
 modifyHelpRequest = async (oldHelpRequest, parentElement) => {
 
     email = parentElement.getAttribute("class")
-    newHelpRequest = parentElement.children[0].textContent
+    newHelpRequest = parentElement.children[1].textContent
 
     var response = await fetch("/modify-help-request", {
 
@@ -69,7 +62,7 @@ modifyHelpRequest = async (oldHelpRequest, parentElement) => {
 deleteHelpRequest = async (parentElement) => {
 
     email = parentElement.getAttribute("class")
-    targetHelpRequest = parentElement.children[0].textContent
+    targetHelpRequest = parentElement.children[1].textContent
 
     var response = await fetch("/delete-help-request", {
 
@@ -103,7 +96,7 @@ getHelpRequests = async () => {
             "Content-type": "application/json"
         }
     })
-    // modify DOM here
+    
     if (response.status == 200) {
 
         data = await response.json()
@@ -117,24 +110,25 @@ getHelpRequests = async () => {
             help_request = data[index].help_request
 
             document.querySelector(".help-requests-container").innerHTML +=
-                `
-            <div class="card" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="id">Richiesta di aiuto di: ${email} </h5>
-                        <p class="card-text">${help_request}</p>
+             `
+              <br>
+                <div class="col-md-12">
+                    <div class="card mx-auto" style="width: 20%; color: black">
+                        <div class="card-body">
+                            <h5 class="id">Richiesta di aiuto di ${email} </h5>
+                            <p class="card-text">${help_request}</p>
+                        </div>
                     </div>
-            </div>
-        `
+                </div>
+             <br>
+            `
         }
     }
 }
 
-postHelpRequest = async (event) => {
+postHelpRequest = async () => {
 
-    event.preventDefault();
-
-    const data = new FormData(event.target);
-    const value = Object.fromEntries(data.entries());
+    const text = document.getElementById("textArea").value
 
     // Get the :id params in the url section
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -148,8 +142,8 @@ postHelpRequest = async (event) => {
         body: JSON.stringify(
             {
                 // Pass the :id in the url to the server for simple retrieving of information
-                user_email: params.id,
-                help_request_text: value.text,
+                help_request_text: text,
+                user_email: params.id
             }
         )
     })
@@ -157,16 +151,18 @@ postHelpRequest = async (event) => {
     if (response.status == 200) {
 
         document.querySelector(".help-requests-container").innerHTML +=
-            `
-            <div class="card" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="id">Richiesta di aiuto di: ${params.id} </h5>
-                        <p class="card-text">${value.text}</p>
+        `
+            <br>
+                <div class="col-md-12">
+                    <div class="card mx-auto" style="width: 20%; color: black">
+                        <div class="card-body">
+                            <h5 class="id">Richiesta di aiuto di ${params.id} </h5>
+                            <p class="card-text">${text}</p>
+                        </div>
                     </div>
-            </div>
+                </div>
+            <br>
         `
     }
 }
 
-const form = document.querySelector('form');
-form.addEventListener('submit', postHelpRequest);

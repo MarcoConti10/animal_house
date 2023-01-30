@@ -1,4 +1,7 @@
-// front office
+/****************/
+/* front office */
+/****************/
+
 loadAnecdotesWall = () => {
 
     // Get the :id params in the url section
@@ -29,7 +32,10 @@ loadLeaderboard = () => {
 
 }
 
-// back office
+/***************/ 
+/* back office */
+/***************/
+
 loadUsersAnagraphic = () => {
     window.location.href = "users-anagraphic.html"
 }

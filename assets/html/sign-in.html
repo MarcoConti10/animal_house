@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- Responsive viewport settings -->
+    <!-- responsive viewport settings -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Sign in</title>
+    <title>Sign In</title>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
@@ -22,6 +22,34 @@
 
 <body>
 
+    <form class="form text-center" id="formLog">
+
+        <!-- name input -->
+        <div class="form-outline mb-4">
+            <input type="text" id="name" class="form-control-lg" placeholder="Name" />
+        </div>
+
+        <!-- email input -->
+        <div class="form-outline mb-4">
+            <input type="email" id="email" class="form-control-lg" placeholder="Email" />
+        </div>
+    
+        <!-- password input -->
+        <div class="form-outline mb-4">
+            <input type="password" id="password" class="form-control-lg" placeholder="Password" />
+        </div>
+
+        <!-- favorite animal-->
+        <div class="form-outline mb-4">
+            <input type="text" id="favoriteAnimal" class="form-control-lg" placeholder="Favorite Animal" />
+        </div>
+    
+        <!-- submit button -->
+        <button type="button" id="button" class="btn btn-primary btn-block lg-4" onclick="signIn()">Let's go!</button>
+
+    </form>
+
+    <!--
     <form>
         
         <label for="name">Name</label><br>
@@ -41,6 +69,7 @@
         <button id="sign-in-button">Submit</button>
 
     </form>
+-->
 
 <script src="sign-in.js"></script>
 

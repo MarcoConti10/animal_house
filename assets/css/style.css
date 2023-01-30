@@ -1,5 +1,5 @@
 /**************/
-/* all files */
+/* all files  */
 /**************/
 
 body {
@@ -19,7 +19,6 @@ body {
 }
 
 #landing-row h3, p {
-	padding-left: 7%;
 	padding-top: 7%;
 	text-align: center;
 	padding-bottom: 3%;
@@ -27,13 +26,112 @@ body {
 
 #landing-buttons {
 	text-align: center;
-	padding-left: 7%;
 	padding-bottom: 5%;
 }
 
 /*********************/
 /* front-log-in.html */
+/* 	 sign-in.html	 */
 /*********************/
+
+.form {
+	margin-top: 10%;
+}
+
+/***********************/
+/* front-intro.html    */ 	
+/* back-intro.html     */
+/* anecdotes-wall.html */
+/* leaderboard.html    */
+/***********************/
+
+.welcomeQuote {
+	margin-top: 5%;
+	padding-bottom: 5%;
+}
+
+/***********************/
+/* anecdotes-wall.html */
+/* help-wall.html      */
+/***********************/
+
+#textArea {
+	border-radius: 0.7rem;
+}
+
+/********************/
+/* leaderboard.html */
+/********************/
+
+.leaderboard-container{
+	/* center the leaderboard */
+	margin-left: auto;
+	margin-right: auto;
+	/* spacing between table elements */
+	border-spacing: 10px;
+	border-collapse: separate;
+}
+
+/*************************/
+/* users-anagraphic.html */
+/*************************/
+
+.users-container {
+	/* center the container */
+	margin-left: auto;
+	margin-right: auto;
+	/* spacing between table elements */
+	border-collapse: separate;
+}
+
+/*************************/
+/* anecdotes-change.html */
+/*************************/
+
+.anecdotes-container {
+	/* center the container */
+	margin-left: auto;
+	margin-right: auto;
+	/* spacing between table elements */
+	border-collapse: separate;
+}
+
+/*************************/
+/* help-change.html 	 */
+/*************************/
+
+.help-requests-container {
+	/* center the container */
+	margin-left: auto;
+	margin-right: auto;
+	/* spacing between table elements */
+	border-collapse: separate;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
