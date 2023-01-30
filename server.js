@@ -1,6 +1,7 @@
 const express = require('express')
 const fs = require('fs')
 const fetch = require('node-fetch') 
+const request = require('request')
 
 // database loading
 const db = JSON.parse(fs.readFileSync("./users.json"))
@@ -27,7 +28,7 @@ app.get('/', (_req, res) => {
 /*     VIDEO    */
 /****************/
 
-app.get('/video', async (req, res) => {
+app.get('/video', async (_req, res) => {
     
     const API_KEY = "AIzaSyCo-NoyfX2PMR-RM8pQW_7-wO-cRunvqao";
     const searchTerm = 'funny animals';
@@ -54,7 +55,7 @@ app.get('/video', async (req, res) => {
     }else{
         res.status(400).send("The video is not available");
     }
-})
+ })
 
 
 
@@ -62,34 +63,8 @@ app.get('/video', async (req, res) => {
 /*     GAME     */
 /****************/
 
-app.post('/update-score', (req, res) => {
-    if (!req.body.username) {
-        return res.status(400).json({ error: 'Username is required' });
-    }
-    // read the users.json file
-    fs.readFile('users.json', (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: 'Error reading users file' });
-        }
-        const users = JSON.parse(data);
-        // find the user and update their score
-        const userIndex = users.findIndex((user) => user.username === req.body.username);
-        if (userIndex === -1) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-        users[userIndex].gameScore += 1;
-        // write the updated users list to the file
-        fs.writeFile('users.json', JSON.stringify(users), (writeErr) => {
-            if (writeErr) {
-                return res.status(500).json({ error: 'Error updating users file' });
-            }
-            return res.json({ message: 'Score updated' });
-        });
-    });
-});
-
-app.get('/question', (req, res) => {
-    request('https://opentdb.com/api.php?amount=1&category=27&type=boolean', { json: true }, (err, response, body) => {
+app.get('/question', (_req, res) => {
+    request('https://opentdb.com/api.php?amount=10&category=27&type=boolean', { json: true }, (err, response, body) => {
         if (err) {
             return res.status(500).json({ error: 'Error fetching question' });
         }
