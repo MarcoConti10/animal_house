@@ -81,23 +81,6 @@ modifyUser = async (clicked_class) => {
 
         // per applicare i cambiamenti su users.json
         window.location.reload()
-
-        //dovrebbe salvare tutti i figli con questo setAttribute, quindi il resto non serve
-        /*
-        document.getElementsByClassName(oldName)[0].setAttribute("class", newName)
-        */
-
-
-        // qui il parent ha già il nome nuovo, cerca per newName sul parent
-        /*
-        document.getElementsByClassName(newName)[0].children[0].setAttribute("class", newName)
-        document.getElementsByClassName(newName)[0].children[1].setAttribute("class", newName)
-        document.getElementsByClassName(newName)[0].children[2].setAttribute("class", newName)
-        document.getElementsByClassName(newName)[0].children[3].setAttribute("class", newName)
-        document.getElementsByClassName(newName)[0].children[4].setAttribute("class", newName)
-        document.getElementsByClassName(newName)[0].children[5].setAttribute("class", newName)
-        */
- 
         
         // contestualmente ad un alert di 1-2 secondi che dice "utente modificato"
         /*

@@ -1,0 +1,38 @@
+{
+    "users": [
+        {
+            "name": "test1",
+            "email": "test1@gmail.com",
+            "password": "test1",
+            "favoriteAnimal": "dog",
+            "gameScore": "5",
+            "anecdotes": [
+                {
+                    "content": "test1 anecdote"
+                }
+            ],
+            "helpRequests": [
+                {
+                    "content": "test1 help request"
+                }
+            ]
+        },
+        {
+            "name": "test2",
+            "email": "test2@gmail.com",
+            "password": "test2",
+            "favoriteAnimal": "bird",
+            "gameScore": "13",
+            "anecdotes": [
+                {
+                    "content": "test2 anecdote"
+                }
+            ],
+            "helpRequests": [
+                {
+                    "content": "test2 help request"
+                }
+            ]
+        }
+    ]
+}

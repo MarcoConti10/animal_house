@@ -1,13 +1,13 @@
 // back office
 loadHelpRequests = async () => {
 
-    var response = await fetch("/get-help-requests", {
+    var response = await fetch("/load-help-requests", {
         method: "GET",
         headers: {
             "Content-type": "application/json"
         }
     })
-    // modify DOM here
+
     if (response.status == 200) {
 
         const data = await response.json()
@@ -30,7 +30,7 @@ loadHelpRequests = async () => {
         }
     }
 } 
-
+ 
 modifyHelpRequest = async (oldHelpRequest, parentElement) => {
 
     email = parentElement.getAttribute("class")
@@ -54,9 +54,9 @@ modifyHelpRequest = async (oldHelpRequest, parentElement) => {
             })
     })
 
-    if (response.status == 200)
+    if (response.status == 200) {
         window.location.reload()
-
+    }
 }
 
 deleteHelpRequest = async (parentElement) => {
