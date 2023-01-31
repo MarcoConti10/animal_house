@@ -1,7 +1,7 @@
 // back office
 loadAnecdotes = async () => {
 
-    var response = await fetch("/get-anecdotes", {
+    var response = await fetch("/load-anecdotes", {
         method: "GET",
         headers: {
             "Content-type": "application/json"
@@ -53,8 +53,9 @@ modifyAnecdote = async (oldAnecdote, parentElement) => {
                 }
             })
     })
-    if (response.status == 200) 
-        window.location.reload() 
+    
+    if (response.status == 200)
+        window.location.reload()
 }
 
 deleteAnecdote = async (parentElement) => {

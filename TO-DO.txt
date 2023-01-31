@@ -1,38 +1,24 @@
 TO-DO: 
 
-    -) CSS Mobile First
-    -) Consegna: README, codice, dati già popolati del db (leggi come scritto su Virtuale, e popolali con dati veritieri, non di test)
-    -) Modify p to table and td in users-anagraphic.html and users-anagraphic.js
-    -) Check why it changes every class name in users-anagraphic.js even without code explicitly changes
-    -) Validate all fiedls of sign-in form and log-in (maybe not necessary). Se esiste già una mail o username di quel tipo, non fa andare avanti.
-    -) Separate routing from server
-    -) Change global font
-    -) Better tables css
-    -) Merge "users_container" and "anecdotes_container" in one single "container" for CSS purposes
-    -) Don't allow anecdotes or help requests already existent
-    -) Merge back-log-in & front-log-in functions 
-    -) Check if <app.use(express.json()) & <app.use(express.urlencoded({extended: true}))> are 100% necessary
-    -) Merge getHelpRequests with loadHelpRequests (loadHelpRequests is better in terms of class names)
-    -) Separate anecdotes front and back (error for const outside)
-    -) Language, english/italian coherence
-    -) In leaderboard, send the username, not the email. And put una coppa di oro al primo, una di acciaio al secondo, una di bronzo al terzo.
+    -) In leaderboard, send the username, not the email.
     -) Modify help requests css with: help request first in the card, email like "To contact this user: test@gmail.com" bottom-right of the card.
-    -) Add header (to go at any moment to Game, Front Office, Back Office sections)
-    -) name/email coherence in helpRequest and anecdotes
-    -) Change class[0] ecc. to simply parentElement in <users-anagraphic.js>
-    -) Modify anecdotes and help with contenteditable. Univoco per front e back office
-    -) Folder structure: users.json inside database folder, router.js inside routing folder, others.
-    -) Change username in sign in form instead of name. 
-    -) Change email to username (univoco) for leaderboard (not necessary) and aneddoti. Keep the email for the help wall.
+    -) Change username in sign in form instead of name (same in users.json) 
+    -) Change email to username (univoco) for leaderboard and aneddoti. Keep the email for the help wall.
+    -) Better tables css
+    -) Change alerts to something better looking
+    -) Consegna: README (con spiegazione routes, cartelle, database, ecc, in italiano, poi su Github lo traduco), codice, dati già popolati del db (leggi come scritto su Virtuale, e popolali con dati veritieri, non di test)
     -) Correct variables (underscore, trait or capital letters) - check guide
-    -) Fix empty requests (help and anecdotes)
-    -) Send codes in routing and exceptions (e.g. 200 and 403)
-    -) Clean the code
+    -) Send codes in routing and exceptions (e.g. 200 and 403) - when necessary and not already fixed in client side
+    -) Clean the code from comments, spacing, indent
     -) Change all var in let or const - check guide
+    -) delete projectStructure.txt and to-do.txt
     -) Test the final code on other pc
 
 NOT NECESSARY: 
 
-    -) Each user can delete or modify their own anecdotes
-    -) Add a position field in leaderboard (1, 2, 3 etc.) & his favorite animal (favorite animal even for anecdotes)
     -) Servizio aggiuntivo: riconosci se l'animale messo dall'utente è uguale al suo preferito (come specie). Basato su API di intelligenza artificale (l'immagine viene caricata dal file system).
+    -) Add header (to go at any moment to Game, Front Office, Back Office sections)
+    -) Fix empty requests (help and anecdotes)
+    -) Change global font
+
+
