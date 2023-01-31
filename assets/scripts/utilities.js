@@ -47,3 +47,23 @@ loadAnecdotesChange = () => {
 loadHelpChange = () => {
     window.location.href = "help-change.html"
 }
+
+/***************/ 
+/*     game    */
+/***************/
+
+loadGame = () => {
+    window.location.href = "game.html"
+}
+
+loadRandvideo = () => {
+    window.location.href = "randvideo.html"
+}
+
+loadCuriosita = () => {
+    window.location.href = "curiosita.html"
+}
+
+loadInfo = () => {
+    window.location.href = "info-legali.html"
+}

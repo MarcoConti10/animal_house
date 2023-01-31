@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Animal Quiz</title>
+    <title>Sign in</title>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
@@ -21,15 +21,19 @@
 </head>
 
 <body>
-    <div id="question-container">
-        <p id="question"></p>
-        <button id="true">TRUE</button>
-        <button id="false">FALSE</button>
-    </div>
-    <div id="result"></div>
-    <div id="score"></div>
-    <button id="play-again" style="display: none;">Gioca di nuovo</button>
 
-    <script src="game.js"></script>
+    <h1>Funny animal video</h1>
+    <div id="video-container">
+        <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <script src="randvideo.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        getRandomVideo();
+    });
+    </script>
+
 </body>
 </html>

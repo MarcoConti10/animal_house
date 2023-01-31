@@ -1,10 +1,22 @@
 {
-    "questions": [
-        {
-            "content": "Il gatto ha il pelo x"
-        },
-        {
-            "content": "Il cane mangia y"
-        }
-    ]
+  "curiosity": [
+    {
+      "content": "Snails have 4 noses: 2 for breathing and 2 for smelling."
+    },
+    {
+      "content": "Some lions can reproduce even 50 times a day"
+    },
+    {
+      "content": "A dolphin's hearing is so fine that it can hear sounds 20 km away."
+    },
+    {
+      "content": "Elephants are the only mammals that can't jump."
+    },
+    {
+      "content": "Camels have 3 eyebrows to protect themselves from sand storms."
+    },
+    {
+      "content": "Giraffes do not have vocal cords and communicate by vibrating the air around their neck."
+    }
+  ]
 }

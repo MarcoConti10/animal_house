@@ -1,76 +1,68 @@
-const startButton = document.querySelector('#start-button');
-const questionContainer = document.querySelector('#question-container');
-const questionText = document.querySelector('#question-text');
-const trueButton = document.querySelector('#true-button');
-const falseButton = document.querySelector('#false-button');
-const message = document.querySelector('#message');
-const nextButton = document.querySelector('#message-button');
-const correctMessage = "Correct answer!";
-const incorrectMessage = "Incorrect answer. Try again.";
-
-
-let questions;
-
-startButton.addEventListener('click', async () => {
-  startButton.style.display = 'none';
-  questionContainer.style.display = 'block';
-  nextButton.style.display = 'none';
-
-  const response = await fetch("/question", {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json"
-    }
-  });
-  let questionIndex = 0;
-  questions = await response.json();
-  console.log(questions.results[i].question);
-  displayQuestion(questions[questionIndex]);
-
-
-});
-
-trueButton.addEventListener('click', () => {
-  const answer = questions[questionIndex].correct_answer;
-  if (answer === 'True') {
-    showMessage(answer, correctMessage);
-  } else {
-    showMessage(answer, incorrectMessage);
-  } 
-});
-
-falseButton.addEventListener('click', () => {
-  const answer = questions[questionIndex].correct_answer;
-  if (answer === 'False') {
-    showMessage(answer, correctMessage);
-  } else {
-    showMessage(answer, incorrectMessage);
-  }
-});
-
-function showMessage(_answer, messageText) {
-  questionText.innerHTML = messageText;
-  trueButton.style.display = 'none';
-  falseButton.style.display = 'none';
-  message.style.display = 'block';
-  nextButton.style.display = 'block';
-
-  nextButton.addEventListener('click', () => {
-    message.style.display = 'none';
-    nextButton.style.display = 'none';
-    trueButton.style.display = 'block';
-    falseButton.style.display = 'block';
-    questionIndex++;
-    if (questionIndex === questions.length) {
-      // end of questions
+// Gestione della logica del gioco
+const game = {
+  score: 0,
+  questions: [],
+  currentQuestionIndex: 0,
+  start: function() {
+    // Reset del punteggio e delle domande
+    this.score = 0;
+    this.questions = [];
+    this.currentQuestionIndex = 0;
+    // Chiamata all'API per ottenere le domande
+    fetch('https://opentdb.com/api.php?amount=10&category=27&type=boolean')
+      .then(response => response.json())
+      .then(data => {
+        this.questions = data.results;
+        // Avvio del gioco
+        this.nextQuestion();
+      });
+  },
+  nextQuestion: function() {
+    // Verifica se ci sono ancora domande da mostrare
+    if (this.currentQuestionIndex >= this.questions.length) {
+      this.endGame();
       return;
     }
-    displayQuestion(questions[questionIndex]);
-  });
-}
+    // Mostra la prossima domanda
+    const question = this.questions[this.currentQuestionIndex];
+    // Aggiorna la UI
+    document.getElementById('question').innerHTML = question.question;
+    document.getElementById('true').innerHTML = 'Vero';
+    document.getElementById('false').innerHTML = 'Falso';
+  },
+  checkAnswer: function(answer) {
+    // Verifica se la risposta è corretta
+    const isCorrect = this.questions[this.currentQuestionIndex].correct_answer === answer;
+    if (isCorrect) {
+      this.score++;
+    }
+    // Passa alla domanda successiva
+    this.currentQuestionIndex++;
+    this.nextQuestion();
+  },
+  endGame: function() {
+    // Verifica se il giocatore ha vinto o perso
+    const hasWon = this.score >= 5;
+    if (hasWon) {
+      // Aggiorna il punteggio sul file user.json (non implementato in questo esempio)
+      // Mostra messaggio di vittoria
+      document.getElementById('result').innerHTML = 'Hai vinto!';
+    } else {
+      // Mostra messaggio di sconfitta
+      document.getElementById('result').innerHTML = 'Hai perso.';
+    }
+    // Mostra il punteggio finale
+    document.getElementById('score').innerHTML = `Il tuo punteggio è: ${this.score}`;
+    // Mostra il tasto "Gioca di nuovo"
+    document.getElementById('play-again').style.display = 'block';
+  }
+};
 
-function displayQuestion(questions) {
-  questionText.innerHTML = questions.question;
-}
+// Gestione degli eventi del tasto "Vero"
+document.getElementById('true').addEventListener('click', function() {
+  game.checkAnswer('True');
+});
 
+// Gestione degli eventi del tasto "Falso"
+document.getElementById('false').addEventListener
 
