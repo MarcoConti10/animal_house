@@ -69,44 +69,17 @@ router.get('/video', async (_req, res) => {
 })
 
 //startig the game 
-let gameScore = 0;
-
-router.get("/question", (req, res) => {
-  fetch("https://opentdb.com/api.php?amount=10&category=27&type=boolean")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((error) => {
-      console.error("There was a problem with the fetch operation:", error);
-      res.status(500).json({ error });
-    });
+router.get("/question", async (req, res) => {
+ 
+    request.get('https://opentdb.com/api.php?amount=10&category=27&type=boolean', (error, response, body) => {
+  if (!error && response.statusCode === 200) {
+    // Parsare i dati ottenuti dalla chiamata API
+    const data = JSON.parse(body);
+    
+    // Inviare i dati al client
+    res.send(data);
+  }
 });
-
-router.post("/answer", (req, res) => {
-  const { answer } = req.body;
-
-  // Increment gameScore if answer is correct
-  if (answer === "true") {
-    gameScore++;
-  }
-
-  // Check if game is over
-  if (gameScore === 5) {
-    // Game won
-    res.json({ gameOver: true, gameWon: true, gameScore });
-  } else if (gameScore < 5) {
-    // Game not over
-    res.json({ gameOver: false, gameWon: false, gameScore });
-  } else {
-    // Game lost
-    res.json({ gameOver: true, gameWon: false, gameScore });
-  }
 });
 
 module.exports = router;
