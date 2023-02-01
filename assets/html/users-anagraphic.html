@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <!-- responsive viewport settings -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Users Anagraphic</title>
+    <title>Manage Users</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -14,51 +15,71 @@
 
     <!-- Google Icons -->
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,0" />
 
     <!-- custom CSS-->
     <link href="style.css" type="text/css" rel="stylesheet">
 </head>
 
-<body onload="getUsers()">
+<body onload="loadUsers()">
 
-    <h2 class="welcomeQuote text-center">Users Anagraphic
-        <span class="material-symbols-outlined">group</span>
+    <!-- welcome message-->
+    <h2 class="welcomeQuoteUsers text-center">Modify or Delete Users
+        <span class="material-symbols-outlined">edit_note</span>
     </h2>
 
-    <table class="users-container" width="500">
-        <tr bgcolor="grey">
-            <th>
-                Name
-            </th>
-    
-            <th>
-                Email
-            </th>
-    
-            <th>
-                Password
-            </th>
+    <form class="text-center">
+        <!-- name input -->
+        <div class="form-outline mb-3">
+            <input id="formName" class="form-control-lg" placeholder="Name" />
+        </div>
 
-            <th>
-                Animal
-            </th>
+        <!-- email input -->
+        <div class="form-outline mb-3">
+            <input id="formEmail" class="form-control-lg" placeholder="Email" />
+        </div>
 
-            <th>
-                Gamescore
-            </th>
+        <!-- password input -->
+        <div class="form-outline mb-3">
+            <input id="formPassword" class="form-control-lg" placeholder="Password" />
+        </div>
 
-            <th>
-                Edit
-            </th>
+        <!-- favorite animal input -->
+        <div class="form-outline mb-3">
+            <input id="formAnimal" class="form-control-lg" placeholder="Favorite Animal" />
+        </div>
 
-            <th>
-                Delete
-            </th>
-           
-        </tr>
-    </table>
+        <!-- gamescore input -->
+        <div class="form-outline mb-3">
+            <input id="formScore" class="form-control-lg" placeholder="Game Score" />
+        </div>
 
+        <!-- 
+        N.B: button type="button"
+        If you don't specify the button type, the browser will automatically set it to 'reset' or 'submit' which causes the page to reload.
+        Crashing everything. -->
+        <button type="button" class="btn btn-primary" type="submit" value="submit" id="submitButton">Submit</button>
+    </form>
+
+    <!-- anecdotes table-->
+    <div class="col-8 mt-5 text-center table-container">
+        <table class="table" style="color: white">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Favorite Animal</th>
+                    <th>Gamescore</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="users-list">
+            </tbody>
+        </table>
+    </div>
     <script src="users-anagraphic.js"></script>
 </body>
+
 </html>

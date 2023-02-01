@@ -1,23 +1,23 @@
 TO-DO: 
 
+    -) Leaderboard like users/anecdotes/helpReqs
     -) In leaderboard, send the username, not the email.
     -) Modify help requests css with: help request first in the card, email like "To contact this user: test@gmail.com" bottom-right of the card.
     -) Change username in sign in form instead of name (same in users.json) 
     -) Change email to username (univoco) for leaderboard and aneddoti. Keep the email for the help wall.
-    -) Better tables css
-    -) Change alerts to something better looking
     -) Consegna: README (con spiegazione routes, cartelle, database, ecc, in italiano, poi su Github lo traduco), codice, dati già popolati del db (leggi come scritto su Virtuale, e popolali con dati veritieri, non di test)
     -) Correct variables (underscore, trait or capital letters) - check guide
     -) Send codes in routing and exceptions (e.g. 200 and 403) - when necessary and not already fixed in client side
     -) Clean the code from comments, spacing, indent
+    -) helpRequest send email, anecdotes send username
     -) Change all var in let or const - check guide
+    -) getHelpRequests and loadHelpRequest, same for Anecdotes, all in one
     -) delete projectStructure.txt and to-do.txt
     -) Test the final code on other pc
 
 NOT NECESSARY: 
 
     -) Servizio aggiuntivo: riconosci se l'animale messo dall'utente è uguale al suo preferito (come specie). Basato su API di intelligenza artificale (l'immagine viene caricata dal file system).
-    -) Add header (to go at any moment to Game, Front Office, Back Office sections)
     -) Fix empty requests (help and anecdotes)
     -) Change global font
 

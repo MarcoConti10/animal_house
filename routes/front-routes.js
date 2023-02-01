@@ -50,7 +50,6 @@ router.post('/sign-in', (req, res) => {
 router.post('/front-log-in', (req, res) => {
 
     const { user } = req.body
-    console.log(user)
     let found = false
 
     for (usr of db.users) {

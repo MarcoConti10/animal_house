@@ -1,6 +1,8 @@
-getUsers = async () => {
+/* back office */
 
-    var response = await fetch("/get-users", {
+loadUsers = async () => {
+
+    var response = await fetch("/load-users", {
         method: "GET",
         headers: {
             "Content-type": "application/json"
@@ -9,114 +11,127 @@ getUsers = async () => {
 
     if (response.status == 200) {
 
-        data = await response.json()
+        const data = await response.json()
 
         for (let index = 0; index < data.length; index++) {
 
             name = data[index].user_name
             email = data[index].user_email
             password = data[index].user_password
-            gameScore = data[index].user_gamescore
             favoriteAnimal = data[index].user_favoriteAnimal
+            gameScore = data[index].user_gamescore
 
-            document.querySelector(".users-container").innerHTML +=
-            `
-                <tr class="${name}">
-                    <td class="${name}" contenteditable="true">${name}</td>
-                    <td class="${name}" contenteditable="true">${email}</td>
-                    <td class="${name}" contenteditable="true">${password}</td>
-                    <td class="${name}" contenteditable="true">${favoriteAnimal}</td>
-                    <td class="${name}" contenteditable="true">${gameScore}</td>
+            const list = document.querySelector("#users-list")
+            const row = document.createElement("tr")
 
-                    <td class="${name}" onclick="modifyUser(this.className)"><button><span class="material-symbols-outlined">edit</span></button></td>
-                    <td class="${name}" onclick="deleteUser(this.className)"><button><span class="material-symbols-outlined">remove</span></button></td>
-                </tr>
+            row.innerHTML =
+                `
+                <td>${name}</td>
+                <td>${email}</td>
+                <td>${password}</td>
+                <td>${favoriteAnimal}</td>
+                <td>${gameScore}</td>
+                <td>
+                    <a class="btn btn-warning edit">Edit</a>
+                    <a class="btn btn-danger delete">Delete</a>
+                <td>
             `
+            list.appendChild(row)
         }
     }
 }
 
-modifyUser = async (clicked_class) => {
+// edit
+document.querySelector("#users-list").addEventListener("click", (e) => {
 
-    /*  
-        quando clicca, significa che vuole mandare la modifica (PATCH)
-        quindi significa che ha già modificato i valori che vuole modificare
-        mettiamo caso clicked_class sia test1 inizialmente
-        di questo, prendo i valori, e mettiamo abbia cambiato la mail con test3@gmail.com
-        al click, prendo il nuovo valore (anche tutti se vengono modificati), li mando al server assieme al valore test1 ("oldName")
-        nel server, prendo i valori
-        cerco il test1, modifico con i parametri mandati nuovi, e poi ritorno sul client
-        a questo punto, nel client, modifico anche il nome del div iniziale in test3 e tutti i suoi discendenti e finito
-    */
+    target = e.target
 
-    oldName = document.getElementsByClassName(clicked_class)[0].getAttribute("class")
-    newName = document.getElementsByClassName(clicked_class)[0].children[0].textContent
-    newEmail = document.getElementsByClassName(clicked_class)[0].children[1].textContent
-    newPassword = document.getElementsByClassName(clicked_class)[0].children[2].textContent
-    newAnimal = document.getElementsByClassName(clicked_class)[0].children[3].textContent
-    newScore = document.getElementsByClassName(clicked_class)[0].children[4].textContent
+    if (target.classList.contains("edit")) {
 
-    var response = await fetch("/modify-user", {
+        selectedRow = target.parentElement.parentElement
+        document.querySelector("#formName").value = selectedRow.children[0].textContent
+        document.querySelector("#formEmail").value = selectedRow.children[1].textContent
+        document.querySelector("#formPassword").value = selectedRow.children[2].textContent
+        document.querySelector("#formAnimal").value = selectedRow.children[3].textContent
+        document.querySelector("#formScore").value = selectedRow.children[4].textContent
 
-        method: "PATCH",
-        headers: {
-            "Content-type": "application/json"
-        },
-
-        body: JSON.stringify(
-            {
-                user:
-                {
-                    oldName: oldName,
-                    newName: newName,
-                    newEmail: newEmail,
-                    newPassword: newPassword,
-                    newAnimal: newAnimal,
-                    newScore: newScore
-                }
-            })
-    })
+        oldName = selectedRow.children[0].textContent
     
-    if (response.status == 200) {
+        document.querySelector("#submitButton").onclick = async function () {
 
-        // per applicare i cambiamenti su users.json
-        window.location.reload()
-        
-        // contestualmente ad un alert di 1-2 secondi che dice "utente modificato"
-        /*
-        setTimeout(() => {
-            // alert here
-            window.location.reload()
-        }, 1000)
-        */     
-    }
-}
+            newName = document.querySelector("#formName").value
+            newEmail = document.querySelector("#formEmail").value
+            newPassword = document.querySelector("#formPassword").value
+            newAnimal = document.querySelector("#formAnimal").value
+            newScore = document.querySelector("#formScore").value
 
-deleteUser = async (clicked_class) => {
+            var response = await fetch("/modify-user", {
 
-    let userToDelete = document.getElementsByClassName(clicked_class)[0].getAttribute("class")
-
-    var response = await fetch("/delete-user", {
-
-        method: "DELETE",
-        headers: {
-            "Content-type": "application/json"
-        },
-
-        body: JSON.stringify(
-            {
-                user: 
-                {
-                    name: userToDelete
-                }
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(
+                    {
+                        user:
+                        {
+                            oldName: oldName,
+                            newName: newName,
+                            newEmail: newEmail,
+                            newPassword: newPassword,
+                            newAnimal: newAnimal,
+                            newScore: newScore
+                        }
+                    })
             })
+
+            // update values
+            selectedRow.children[0].textContent = document.querySelector("#formName").value
+            selectedRow.children[1].textContent = document.querySelector("#formEmail").value
+            selectedRow.children[2].textContent = document.querySelector("#formPassword").value
+            selectedRow.children[3].textContent = document.querySelector("#formAnimal").value
+            selectedRow.children[4].textContent = document.querySelector("#formScore").value
+
+            //clear fields
+            document.querySelector("#formName").value = ""
+            document.querySelector("#formEmail").value = ""
+            document.querySelector("#formPassword").value = ""
+            document.querySelector("#formAnimal").value = ""
+            document.querySelector("#formScore").value = ""
+        }
+    }
+})
+
+// delete
+document.querySelector("#users-list").addEventListener("click", async (e) => {
+
+    target = e.target
+
+    if (target.classList.contains("delete")) {
+
+        selectedRow = target.parentElement.parentElement
+        targetUser = selectedRow.children[0].textContent
+
+        var response = await fetch("/delete-user", {
+
+            method: "DELETE",
+            headers: {
+                "Content-type": "application/json"
+            },
+
+            body: JSON.stringify(
+                {
+                    user:
+                    {
+                        name: targetUser
+                    }
+                })
         })
-    
-    if(response.status == 200) {
-        // Remove the user graphically
-        userToDelete = document.getElementsByClassName(clicked_class)[0]
-        userToDelete.parentNode.removeChild(userToDelete)
+
+        // remove the user graphically
+        target.parentElement.parentElement.remove()
     }
-}
+})
+
 
 

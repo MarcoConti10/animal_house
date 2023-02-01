@@ -111,6 +111,43 @@ body {
 	border-collapse: separate;
 }
 
+/**************************/
+/* users-anagraphic.html, */
+/* anecdotes-change.html, */
+/*   help-change.html 	  */
+/**************************/
+
+.table-container {
+	/* center the container */
+	margin-left: auto;
+	margin-right: auto;
+	/* spacing between table elements */
+	border-spacing: 7px;
+	border-collapse: separate;
+}
+/*
+ .table>tbody>tr>td,
+.table>tbody>tr>th {
+	border-top: none;
+} */
+
+/* remove lines between table rows (except the first one) */
+table>tbody>tr>td{
+	border: none
+}
+
+/*****************************/
+/* users-anagraphic.html 	 */
+/*****************************/
+
+.welcomeQuoteUsers {
+	margin-top: 3%;
+	padding-bottom: 3%;
+}
+
+
+
+
 
 
 
