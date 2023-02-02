@@ -21,8 +21,13 @@
 
 </head>
 
-<body>
-    <button onclick="prova()" id="start"> START </button>
+<body onload="gamePlay()">
+    <h1>Welcome to the Animal's Quiz!</h1>
+    <div id="questionContainer">
+        <div id="question"></div>
+        <button id="true-button">True</button>
+        <button id="false-button">False</button>
+    </div>
 
     <script src="game.js"></script>
 

@@ -70,16 +70,16 @@ router.get('/video', async (_req, res) => {
 
 //startig the game 
 router.get("/question", async (req, res) => {
- 
-    request.get('https://opentdb.com/api.php?amount=10&category=27&type=boolean', (error, response, body) => {
-  if (!error && response.statusCode === 200) {
-    // Parsare i dati ottenuti dalla chiamata API
-    const data = JSON.parse(body);
-    
-    // Inviare i dati al client
-    res.send(data);
-  }
-});
+  
+  const url_api = "https://opentdb.com/api.php?amount=10&category=27&type=boolean"
+
+  // async/await
+  let response = await fetch(url_api)
+  let data = await response.json()
+  // attenzione ai caratteri &quot e altri non codificati perfettamente
+  //console.log(data.results[2].question)
+  res.send(data)
+  
 });
 
 module.exports = router;
