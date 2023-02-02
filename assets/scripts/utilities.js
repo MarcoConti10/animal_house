@@ -2,8 +2,8 @@
 loadAnecdotesWall = () => {
 
     // Get the :id params in the url section
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const params = Object.fromEntries(urlSearchParams.entries());
+    const urlSearchParams = new URLSearchParams(window.location.search)
+    const params = Object.fromEntries(urlSearchParams.entries())
 
     window.location.href = "anecdotes-wall.html?id=" + params.id
 
@@ -27,6 +27,16 @@ loadLeaderboard = () => {
 
     window.location.href = "leaderboard.html?id=" + params.id
 
+}
+
+startGame = () => {
+
+    // Get the :id params in the url section
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    console.log(params)
+
+    window.location.href = "game.html?id=" + params.id
 }
 
 
