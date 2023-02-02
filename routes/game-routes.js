@@ -68,16 +68,13 @@ router.get('/video', async (_req, res) => {
     }
 })
 
-//startig the game 
+// Take questions from the API and send them to the client
 router.get("/question", async (req, res) => {
   
   const url_api = "https://opentdb.com/api.php?amount=10&category=27&type=boolean"
 
-  // async/await
   let response = await fetch(url_api)
   let data = await response.json()
-  // attenzione ai caratteri &quot e altri non codificati perfettamente
-  //console.log(data.results[2].question)
   res.send(data)
   
 });

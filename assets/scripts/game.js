@@ -1,5 +1,5 @@
 gamePlay = async () => {
-  // Recupero le domande dall'API
+  // Take quesrtions from API
   let response = await fetch("/question", {
     method: "GET",
     headers: {
@@ -13,12 +13,12 @@ gamePlay = async () => {
   let currentQuestion = 0;
   let score = 0;
 
-  // Mostra la domanda corrente
+  // Show the current question
   function displayQuestion() {
     document.getElementById("question").innerHTML = questions.results[currentQuestion].question;
   }
 
-  // Aggiungo gli eventi ai pulsanti true e false
+  // Handeling true and false events
   document.getElementById("true-button").addEventListener("click", function() {
     if (questions.results[currentQuestion].correct_answer === 'True') {
       score++;
@@ -43,24 +43,24 @@ gamePlay = async () => {
     }
   });
 
-  // Mostra la schermata finale con il punteggio
+  // Showing final result, with score
   function showFinalScreen() {
     let resultMessage = '';
     if (score >= 6) {
-      resultMessage = 'Congratulazioni! Hai ottenuto un punteggio positivo.';
+      resultMessage = 'Nice job! You win.';
     } else {
-      resultMessage = 'Mi dispiace, il tuo punteggio è negativo.';
+      resultMessage = 'Sorry, try again.';
     }
     document.getElementById("questionContainer").innerHTML = `
       <p>${resultMessage}</p>
       <p>Punteggio: ${score}/10</p>
-      <button onclick="restart()">Ricomincia</button>
+      <button onclick="restart()">Play again</button>
     `;
   }
-  // Mostra la prima domanda
+  // Show the first question
   displayQuestion();
 }  
-// Riavvia il gioco
+// Restart the game
   function restart() {
     document.location.href="http://localhost:3000/game.html";
   }
