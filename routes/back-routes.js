@@ -29,8 +29,8 @@ router.post('/back-log-in', (req, res) => {
         res.sendStatus(403)
 })
 
-// get all users data (except for anecdotes and help, in a separate section)
-router.get('/get-users', (req, res) => {
+// load all users data (except for anecdotes and help, in a separate section)
+router.get('/load-users', (req, res) => {
 
     let data = []
 
@@ -40,8 +40,8 @@ router.get('/get-users', (req, res) => {
             user_name: usr.name,
             user_email: usr.email,
             user_password: usr.password,
-            user_gamescore: usr.gameScore,
-            user_favoriteAnimal: usr.favoriteAnimal
+            user_favoriteAnimal: usr.favoriteAnimal,
+            user_gamescore: usr.gameScore
         })
     }
 
@@ -165,7 +165,6 @@ router.get('/load-help-requests', (req, res) => {
 router.patch('/modify-help-request', (req, res) => {
 
     const { user } = req.body
-    console.log(user)
 
     for (usr of db.users) {
         if (user.email == usr.email) {
@@ -201,3 +200,4 @@ router.delete('/delete-help-request', (req, res) => {
 })
 
 module.exports = router
+

@@ -1,92 +1,3 @@
-// back office
-loadHelpRequests = async () => {
-
-    var response = await fetch("/load-help-requests", {
-        method: "GET",
-        headers: {
-            "Content-type": "application/json"
-        }
-    })
-
-    if (response.status == 200) {
-
-        const data = await response.json()
-
-        for (let index = 0; index < data.length; index++) {
-
-            email = data[index].email
-            helpRequest = data[index].help_request
-
-            document.querySelector(".help-requests-container").innerHTML +=
-            `
-            <tr class="${email}">
-                <td class="${email}">${email}</td>
-                <td class="${email}" contenteditable="true">${helpRequest}</td>
-
-                <td class="${email}" onclick="modifyHelpRequest('${helpRequest}', this.parentElement)"><button><span class="material-symbols-outlined">edit</span></button></td>
-                <td class="${email}" onclick="deleteHelpRequest(this.parentElement)"><button><span class="material-symbols-outlined">remove</span></button></td>
-            </tr>
-            `
-        }
-    }
-} 
- 
-modifyHelpRequest = async (oldHelpRequest, parentElement) => {
-
-    email = parentElement.getAttribute("class")
-    newHelpRequest = parentElement.children[1].textContent
-
-    var response = await fetch("/modify-help-request", {
-
-        method: "PATCH",
-        headers: {
-            "Content-type": "application/json"
-        },
-
-        body: JSON.stringify(
-            {
-                user:
-                {
-                    email: email,
-                    oldHelpRequest: oldHelpRequest,
-                    newHelpRequest: newHelpRequest
-                }
-            })
-    })
-
-    if (response.status == 200) {
-        window.location.reload()
-    }
-}
-
-deleteHelpRequest = async (parentElement) => {
-
-    email = parentElement.getAttribute("class")
-    targetHelpRequest = parentElement.children[1].textContent
-
-    var response = await fetch("/delete-help-request", {
-
-        method: "DELETE",
-        headers: {
-            "Content-type": "application/json"
-        },
-
-        body: JSON.stringify(
-            {
-                user:
-                {
-                    email: email,
-                    targetHelpRequest: targetHelpRequest
-                }
-            })
-    })
-    if (response.status == 200) {
-        // Remove the user graphically
-        parentElement.remove()
-    }
-}
-
-
 // front office
 getHelpRequests = async () => {
 
@@ -96,7 +7,7 @@ getHelpRequests = async () => {
             "Content-type": "application/json"
         }
     })
-    
+
     if (response.status == 200) {
 
         data = await response.json()
@@ -110,7 +21,7 @@ getHelpRequests = async () => {
             help_request = data[index].help_request
 
             document.querySelector(".help-requests-container").innerHTML +=
-             `
+                `
               <br>
                 <div class="col-md-12">
                     <div class="card mx-auto" style="width: 20%; color: black">
@@ -151,7 +62,7 @@ postHelpRequest = async () => {
     if (response.status == 200) {
 
         document.querySelector(".help-requests-container").innerHTML +=
-        `
+            `
             <br>
                 <div class="col-md-12">
                     <div class="card mx-auto" style="width: 20%; color: black">
@@ -165,4 +76,114 @@ postHelpRequest = async () => {
         `
     }
 }
+
+
+// back office
+loadHelpRequests = async () => {
+
+    var response = await fetch("/load-help-requests", {
+        method: "GET",
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+
+    if (response.status == 200) {
+
+        const data = await response.json()
+
+        for (let index = 0; index < data.length; index++) {
+
+            email = data[index].email
+            helpRequest = data[index].help_request
+
+            const list = document.querySelector("#help-requests-list")
+            const row = document.createElement("tr")
+
+            row.innerHTML =
+                `
+                <td>${email}</td>
+                <td>${helpRequest}</td>
+                <td>
+                    <a class="btn btn-warning edit">Edit</a>
+                    <a class="btn btn-danger delete">Delete</a>
+                <td>
+            `
+            list.appendChild(row)
+        }
+    }
+}
+
+// edit 
+document.querySelector("#help-requests-list").addEventListener("click", (e) => {
+
+    target = e.target
+
+    if (target.classList.contains("edit")) {
+
+        selectedRow = target.parentElement.parentElement
+        document.querySelector("#formHelpReq").value = selectedRow.children[1].textContent
+
+        email = selectedRow.children[0].textContent
+        oldHelpRequest = selectedRow.children[1].textContent
+
+        document.querySelector("#submitButton").onclick = async function () {
+
+            newHelpRequest = document.querySelector("#formHelpReq").value
+
+            var response = await fetch("/modify-help-request", {
+
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(
+                    {
+                        user:
+                        {
+                            email: email,
+                            oldHelpRequest: oldHelpRequest,
+                            newHelpRequest: newHelpRequest
+                        }
+                    })
+            })
+
+            selectedRow.children[1].textContent = document.querySelector("#formHelpReq").value
+            document.querySelector("#formHelpReq").value = ""
+        }
+    }
+})
+
+// delete
+document.querySelector("#help-requests-list").addEventListener("click", async (e) => {
+
+    target = e.target
+
+    if (target.classList.contains("delete")) {
+
+        selectedRow = target.parentElement.parentElement
+        email = selectedRow.children[0].textContent
+        targetHelpRequest = selectedRow.children[1].textContent
+
+        var response = await fetch("/delete-help-request", {
+
+            method: "DELETE",
+            headers: {
+                "Content-type": "application/json"
+            },
+
+            body: JSON.stringify(
+                {
+                    user:
+                    {
+                        email: email,
+                        targetHelpRequest: targetHelpRequest
+                    }
+                })
+        })
+
+        // delete the help request graphically
+        target.parentElement.parentElement.remove()
+    }
+})
 

@@ -2,7 +2,7 @@
   "name": "animal_house",
   "version": "1.0.0",
   "description": "Project for web technologies.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
   },

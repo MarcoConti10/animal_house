@@ -5,10 +5,10 @@
             "email": "test1@gmail.com",
             "password": "test1",
             "favoriteAnimal": "dog",
-            "gameScore": "5",
+            "gameScore": "22",
             "anecdotes": [
                 {
-                    "content": "test1 anecdote"
+                    "content": "test1 anecdote 1"
                 }
             ],
             "helpRequests": [
@@ -21,11 +21,11 @@
             "name": "test2",
             "email": "test2@gmail.com",
             "password": "test2",
-            "favoriteAnimal": "bird",
-            "gameScore": "13",
+            "favoriteAnimal": "cat",
+            "gameScore": "19",
             "anecdotes": [
                 {
-                    "content": "test2 anecdote"
+                    "content": "test2 anecdote 2"
                 }
             ],
             "helpRequests": [
