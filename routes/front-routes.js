@@ -158,4 +158,21 @@ router.get('/create-leaderboard', (req, res) => {
     res.send(myJson)
 })
 
+// add score
+router.post('/add-score', (req, res) => {
+
+    const {user_email} = req.body
+    
+    for (usr of db.users) {
+        if (user_email == usr.email) {
+            numerical_score = Number(usr.gameScore)
+            numerical_score += 1
+            usr.gameScore = numerical_score.toString()
+            fs.writeFileSync("./database/users.json", JSON.stringify(db))
+            break
+        }
+    }
+    res.sendStatus(200) 
+})
+
 module.exports = router

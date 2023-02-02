@@ -9,6 +9,7 @@ TO-DO:
     -) Correct variables (underscore, trait or capital letters) - check guide
     -) Send codes in routing and exceptions (e.g. 200 and 403) - when necessary and not already fixed in client side
     -) Clean the code from comments, spacing, indent
+    -) change all gamescore to number format in all files
     -) helpRequest send email, anecdotes send username
     -) Change all var in let or const - check guide
     -) getHelpRequests and loadHelpRequest, same for Anecdotes, all in one
