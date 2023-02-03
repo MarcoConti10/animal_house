@@ -11,22 +11,24 @@ createLeaderboard = async () => {
 
         data = await response.json()
         
-        // Sort the array of objects based on user_gamescore
+        // Sort the array of objects based on user_gamescore in descending order
         data.sort((a, b) => b.user_gamescore - a.user_gamescore)
 
         for (let index = 0; index < data.length; index++) {
 
-            email = data[index].user_email
+            userName = data[index].user_name
             gameScore = data[index].user_gamescore
 
-            document.querySelector(".leaderboard-container").innerHTML +=
+            const list = document.querySelector("#players-list")
+            const row = document.createElement("tr")
+
+            row.innerHTML =
                 `
-                    <tr>
-                        <td class="email">${email}</td>
-                        <td class="position">${index + 1}</td>
-                        <td class="value">${gameScore}</td>
-                    </tr>
-                `
+                <td>${userName}</td>
+                <td>${index + 1}</td>
+                <td>${gameScore}</td>
+            `
+            list.appendChild(row)
         }
     }   
 }
