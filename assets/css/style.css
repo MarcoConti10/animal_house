@@ -100,3 +100,22 @@ table>tbody>tr>td{
 #welcomeLeaderboard {
 	padding-left: 2%;
 }
+
+/********************/
+/*       video      */
+/********************/
+
+#video-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/********************/
+/*       game       */
+/********************/
+
+.center-game {
+	display: flex;
+	justify-content: center;
+}
