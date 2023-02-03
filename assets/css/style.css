@@ -38,12 +38,16 @@ body {
 	margin-top: 10%;
 }
 
-/***********************/
-/* front-intro.html    */ 	
-/* back-intro.html     */
-/* anecdotes-wall.html */
-/* leaderboard.html    */
-/***********************/
+/*************************/
+/* front-intro.html      */ 	
+/* back-intro.html       */
+/* anecdotes-wall.html 	 */
+/* anecdotes-change.html */
+/* front-game.html       */
+/* help-change.html      */
+/* help-wall.html        */
+/* leaderboard.html      */
+/*************************/
 
 .welcomeQuote {
 	margin-top: 5%;
@@ -59,61 +63,10 @@ body {
 	border-radius: 0.7rem;
 }
 
-/********************/
-/* leaderboard.html */
-/********************/
-
-.leaderboard-container{
-	/* center the leaderboard */
-	margin-left: auto;
-	margin-right: auto;
-	/* spacing between table elements */
-	border-spacing: 7px;
-	border-collapse: separate;
-}
-
-/*************************/
-/* users-anagraphic.html */
-/*************************/
-
-.users-container {
-	/* center the container */
-	margin-left: auto;
-	margin-right: auto;
-	/* spacing between table elements */
-	border-spacing: 7px;
-	border-collapse: separate;
-}
-
-/*************************/
-/* anecdotes-change.html */
-/*************************/
-
-.anecdotes-container {
-	/* center the container */
-	margin-left: auto;
-	margin-right: auto;
-	/* spacing between table elements */
-	border-spacing: 7px;
-	border-collapse: separate;
-}
-
-/*************************/
-/* help-change.html 	 */
-/*************************/
-
-.help-requests-container {
-	/* center the container */
-	margin-left: auto;
-	margin-right: auto;
-	/* spacing between table elements */
-	border-spacing: 7px;
-	border-collapse: separate;
-}
-
 /**************************/
-/* users-anagraphic.html, */
-/* anecdotes-change.html, */
+/* leaderboard.html       */
+/* users-anagraphic.html  */
+/* anecdotes-change.html  */
 /*   help-change.html 	  */
 /**************************/
 
@@ -125,11 +78,6 @@ body {
 	border-spacing: 7px;
 	border-collapse: separate;
 }
-/*
- .table>tbody>tr>td,
-.table>tbody>tr>th {
-	border-top: none;
-} */
 
 /* remove lines between table rows (except the first one) */
 table>tbody>tr>td{
@@ -145,33 +93,10 @@ table>tbody>tr>td{
 	padding-bottom: 3%;
 }
 
+/********************/
+/* leaderboard.html */
+/********************/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#welcomeLeaderboard {
+	padding-left: 2%;
+}

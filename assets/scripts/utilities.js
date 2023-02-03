@@ -34,7 +34,6 @@ startGame = () => {
     // Get the :id params in the url section
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
-    console.log(params)
 
     window.location.href = "game.html?id=" + params.id
 }
@@ -53,10 +52,8 @@ loadHelpChange = () => {
     window.location.href = "help-change.html"
 }
 
-/***************/ 
-/*     game    */
-/***************/
 
+// game
 loadGame = () => {
     window.location.href = "game.html"
 }

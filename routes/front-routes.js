@@ -149,8 +149,8 @@ router.get('/create-leaderboard', (req, res) => {
     for (usr of db.users) {
 
         data.push({
-            user_email: usr.email,
-            user_gamescore: usr.gameScore,
+            user_name: usr.name,
+            user_gamescore: usr.gameScore
         })
     }
 
@@ -158,7 +158,7 @@ router.get('/create-leaderboard', (req, res) => {
     res.send(myJson)
 })
 
-// add score
+// add score of auth game play
 router.post('/add-score', (req, res) => {
 
     const {user_email} = req.body
