@@ -42,5 +42,4 @@ signIn = async () => {
     else {
         alert("Complete the empty fields!")
     }
-
 }

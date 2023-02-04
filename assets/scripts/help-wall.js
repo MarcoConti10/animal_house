@@ -21,13 +21,13 @@ getHelpRequests = async () => {
             help_request = data[index].help_request
 
             document.querySelector(".help-requests-container").innerHTML +=
-                `
+            `
               <br>
                 <div class="col-md-12">
                     <div class="card mx-auto" style="width: 20%; color: black">
                         <div class="card-body">
-                            <h5 class="id">Richiesta di aiuto di ${email} </h5>
-                            <p class="card-text">${help_request}</p>
+                            <p class="card-text" style="font-size: 1.2rem">${help_request}</p>
+                            <p style="color:blue;"> Help this user at: <br> ${email} </p> 
                         </div>
                     </div>
                 </div>
@@ -62,17 +62,17 @@ postHelpRequest = async () => {
     if (response.status == 200) {
 
         document.querySelector(".help-requests-container").innerHTML +=
-            `
+        `
             <br>
                 <div class="col-md-12">
                     <div class="card mx-auto" style="width: 20%; color: black">
                         <div class="card-body">
-                            <h5 class="id">Richiesta di aiuto di ${params.id} </h5>
-                            <p class="card-text">${text}</p>
+                            <p class="card-text" style="font-size: 1.2rem">${text}</p>
+                            <p style="color:blue;"> Help this user at: <br> ${params.id} </p> 
                         </div>
                     </div>
                 </div>
-            <br>
+             <br>
         `
     }
 }
@@ -81,7 +81,7 @@ postHelpRequest = async () => {
 // back office
 loadHelpRequests = async () => {
 
-    var response = await fetch("/load-help-requests", {
+    var response = await fetch("/get-help-requests", {
         method: "GET",
         headers: {
             "Content-type": "application/json"
