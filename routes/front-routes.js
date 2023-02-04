@@ -14,8 +14,8 @@ const db = JSON.parse(fs.readFileSync("./database/users.json"))
 const admins_db = JSON.parse(fs.readFileSync("./database/administrators.json"))
 
 // Imagga API credentials
-const apiKey = 'acc_3f8b1921aca229f'
-const apiSecret = 'f0813daaebd476831b89f2379547b360'
+const apiKey = 'YOUR_API_KEY'
+const apiSecret = 'YOUR_API_SECRET'
 
 // users sign-in
 router.post('/sign-in', (req, res) => {
