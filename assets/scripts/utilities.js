@@ -29,6 +29,12 @@ loadLeaderboard = () => {
 
 }
 
+loadImageRecognition = () => {
+
+    window.location.href = "image-rec.html"
+
+}
+
 startGame = () => {
 
     // Get the :id params in the url section

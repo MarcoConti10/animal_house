@@ -100,3 +100,21 @@ table>tbody>tr>td{
 #welcomeLeaderboard {
 	padding-left: 2%;
 }
+
+/******************/
+/* image-rec.html */
+/******************/
+
+#welcomeQuoteImg {
+	margin-top: 5%;
+	padding-bottom: 2%;
+}
+
+#imgLabel {
+	margin-top: 2%;
+}
+
+#imgInfo {
+	margin-top: 2%;
+	font-size: 1.4rem;
+}

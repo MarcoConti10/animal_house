@@ -5,11 +5,17 @@
 // setup
 const express = require('express')
 const fs = require('fs')
+const FormData = require('form-data')
+const got = require('got') 
 const router = express.Router()
 
 // database loading
 const db = JSON.parse(fs.readFileSync("./database/users.json"))
 const admins_db = JSON.parse(fs.readFileSync("./database/administrators.json"))
+
+// Imagga API credentials
+const apiKey = 'acc_3f8b1921aca229f'
+const apiSecret = 'f0813daaebd476831b89f2379547b360'
 
 // users sign-in
 router.post('/sign-in', (req, res) => {
@@ -174,5 +180,24 @@ router.post('/add-score', (req, res) => {
     }
     res.sendStatus(200) 
 })
+
+// showcase the user's animal
+router.post('/my-animal', async (req, res) => {
+
+    const { base64_image } = req.body
+
+    // split string at the comma and take the second part
+    let clear_b64_image = base64_image.split(',')[1]
+
+    const formData = new FormData()
+    formData.append('image_base64', clear_b64_image)
+
+    const response = await got.post('https://api.imagga.com/v2/tags', { body: formData, username: apiKey, password: apiSecret })
+    let data = await response.body
+
+    res.send(data)
+})
+
+
 
 module.exports = router

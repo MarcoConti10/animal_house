@@ -8,7 +8,8 @@ const frontRouter = require('./routes/front-routes')
 const backRouter = require('./routes/back-routes')
 
 // for parsing requests, otherwise req.body is undefined
-app.use(express.json())
+// 10mb, otherwise normal limit is 1mb
+app.use(express.json({ limit: '10mb' }))
 
 // assets loading
 app.use(express.static(__dirname + '/assets/html'))
