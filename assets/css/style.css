@@ -47,6 +47,7 @@ body {
 /* help-change.html      */
 /* help-wall.html        */
 /* leaderboard.html      */
+/* game.html             */
 /*************************/
 
 .welcomeQuote {
@@ -101,6 +102,15 @@ table>tbody>tr>td{
 	padding-left: 2%;
 }
 
+/********************/
+/*     game.html    */
+/********************/
+
+.center-game {
+	display: flex;
+	justify-content: center;
+}
+
 /******************/
 /* image-rec.html */
 /******************/
@@ -118,3 +128,4 @@ table>tbody>tr>td{
 	margin-top: 2%;
 	font-size: 1.4rem;
 }
+
