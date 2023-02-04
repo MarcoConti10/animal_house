@@ -8,12 +8,12 @@
             "gameScore": "27",
             "anecdotes": [
                 {
-                    "content": "test1 anecdote!!"
+                    "content": "test1 anecdote :) "
                 }
             ],
             "helpRequests": [
                 {
-                    "content": "test1 help request!!"
+                    "content": "test1 help request!!!"
                 }
             ]
         },
@@ -25,12 +25,12 @@
             "gameScore": "23",
             "anecdotes": [
                 {
-                    "content": "test2 anecdote!!"
+                    "content": "test2 anecdote :)"
                 }
             ],
             "helpRequests": [
                 {
-                    "content": "test2 help request!!"
+                    "content": "test2 help request!!!"
                 }
             ]
         }
