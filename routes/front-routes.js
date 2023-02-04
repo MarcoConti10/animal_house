@@ -5,11 +5,17 @@
 // setup
 const express = require('express')
 const fs = require('fs')
+const FormData = require('form-data')
+const got = require('got') 
 const router = express.Router()
 
 // database loading
 const db = JSON.parse(fs.readFileSync("./database/users.json"))
 const admins_db = JSON.parse(fs.readFileSync("./database/administrators.json"))
+
+// Imagga API credentials
+const apiKey = 'YOUR_API_KEY'
+const apiSecret = 'YOUR_API_SECRET'
 
 // users sign-in
 router.post('/sign-in', (req, res) => {
@@ -149,8 +155,8 @@ router.get('/create-leaderboard', (req, res) => {
     for (usr of db.users) {
 
         data.push({
-            user_email: usr.email,
-            user_gamescore: usr.gameScore,
+            user_name: usr.name,
+            user_gamescore: usr.gameScore
         })
     }
 
@@ -158,7 +164,7 @@ router.get('/create-leaderboard', (req, res) => {
     res.send(myJson)
 })
 
-// add score
+// add score of auth game play
 router.post('/add-score', (req, res) => {
 
     const {user_email} = req.body
@@ -174,5 +180,24 @@ router.post('/add-score', (req, res) => {
     }
     res.sendStatus(200) 
 })
+
+// showcase the user's animal
+router.post('/my-animal', async (req, res) => {
+
+    const { base64_image } = req.body
+
+    // split string at the comma and take the second part
+    let clear_b64_image = base64_image.split(',')[1]
+
+    const formData = new FormData()
+    formData.append('image_base64', clear_b64_image)
+
+    const response = await got.post('https://api.imagga.com/v2/tags', { body: formData, username: apiKey, password: apiSecret })
+    let data = await response.body
+
+    res.send(data)
+})
+
+
 
 module.exports = router

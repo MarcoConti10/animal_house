@@ -29,7 +29,7 @@ router.post('/back-log-in', (req, res) => {
         res.sendStatus(403)
 })
 
-// load all users data (except for anecdotes and help, in a separate section)
+// load all users data (except for anecdotes and help)
 router.get('/load-users', (req, res) => {
 
     let data = []
@@ -84,26 +84,6 @@ router.delete('/delete-user', (req, res) => {
     res.sendStatus(200)
 })
 
-// get all anecdotes posted by users (endpoint both for front and back office)
-router.get('/load-anecdotes', (req, res) => {
-
-    let data = []
-
-    for (usr of db.users) {
-
-        for (user_anecdote of usr.anecdotes) {
-
-            data.push({
-                name: usr.name,
-                anecdote: user_anecdote.content
-            })
-        }
-    }
-
-    var myJson = JSON.stringify(data)
-    res.send(myJson)
-})
-
 // modify a user anecdote
 router.patch('/modify-anecdote', (req, res) => {
 
@@ -140,25 +120,6 @@ router.delete('/delete-anecdote', (req, res) => {
         }
     }
     res.sendStatus(200)
-})
-
-// load all help requests
-router.get('/load-help-requests', (req, res) => {
-
-    let data = []
-
-    for (usr of db.users) {
-
-        for (user_help of usr.helpRequests) {
-
-            data.push({
-                email: usr.email,
-                help_request: user_help.content
-            })
-        }
-    }
-    var myJson = JSON.stringify(data)
-    res.send(myJson)
 })
 
 // modify a user help request

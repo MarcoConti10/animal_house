@@ -22,7 +22,7 @@ getAnecdotes = async () => {
             anecdote = data[index].anecdote
 
             document.querySelector(".anecdotes-container").innerHTML +=
-                /* give each card 12 columns, and with mx-auto, put them at the center of these columns */
+            /* give each card 12 columns, and with mx-auto, put them at the center of these columns */
                 `
             <br>
                 <div class="col-md-12">
@@ -86,7 +86,7 @@ postAnecdote = async () => {
 
 loadAnecdotes = async () => {
 
-    var response = await fetch("/load-anecdotes", {
+    var response = await fetch("/get-anecdotes", {
         method: "GET",
         headers: {
             "Content-type": "application/json"
